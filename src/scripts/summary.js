@@ -407,20 +407,41 @@ class Summary extends H5P.EventDispatcher {
    */
   createSectionList(sections, chapterId) {
     let sectionElements = [], hasUnansweredInteractions = false;
+    let responseFields = [], titles = [];
     for (const section of sections) {
       const sectionRow = document.createElement("li");
       sectionRow.classList.add('h5p-interactive-book-summary-overview-section-details');
+      const sectionRowContainer = document.createElement('div');
+      sectionRowContainer.classList.add('h5p-interactive-book-summary-overview-section-container');
+      sectionRow.appendChild(sectionRowContainer);
+      const isActiveReaderToggleEnabled =
+        section.instance.libraryInfo.machineName ===
+          "H5P.ActiveReaderTextInput" && section.instance.getResponse().trim();
+
       if (this.behaviour.progressIndicators) {
         const icon = document.createElement("span");
         icon.classList.add('h5p-interactive-book-summary-section-icon');
         icon.classList.add(section.taskDone ? 'icon-chapter-done' : 'icon-chapter-blank');
-        sectionRow.appendChild(icon);
+        sectionRowContainer.appendChild(icon);
       }
 
-      const title = document.createElement("button");
-      title.type = "button";
-      title.classList.add('h5p-interactive-book-summary-section-title');
-      title.onclick = () => {
+      titles[section.instance.subContentId] = document.createElement("button");
+      titles[section.instance.subContentId].type = "button";
+      titles[section.instance.subContentId].classList.add(
+        "h5p-interactive-book-summary-section-title"
+      );
+      // Add class if isActiveReaderToggleEnabled
+      isActiveReaderToggleEnabled &&
+        titles[section.instance.subContentId].classList.add('toggle', 'hidden');
+      titles[section.instance.subContentId].onclick = () => {
+        if (isActiveReaderToggleEnabled) {
+          // toggle hidden class on the chapter
+          responseFields[section.instance.subContentId].classList.toggle(
+            'hidden'
+          );
+          titles[section.instance.subContentId].classList.toggle('hidden');
+          return;
+        }
         const newChapter = {
           h5pbookid: this.parent.contentId,
           chapter: `h5p-interactive-book-chapter-${chapterId}`,
@@ -437,8 +458,8 @@ class Summary extends H5P.EventDispatcher {
       const metadataTitle = section.content
         && section.content.metadata
         && section.content.metadata.title;
-      title.innerHTML = contentDataTitle ? contentDataTitle
-        : metadataTitle ? metadataTitle : 'Untitled';
+      titles[section.instance.subContentId].innerHTML = contentDataTitle
+        ? contentDataTitle : metadataTitle ? metadataTitle : "Untitled";
 
       const score = document.createElement("div");
       score.classList.add('h5p-interactive-book-summary-section-score');
@@ -453,8 +474,23 @@ class Summary extends H5P.EventDispatcher {
       else {
         hasUnansweredInteractions = true;
       }
-      sectionRow.appendChild(title);
-      sectionRow.appendChild(score);
+
+      // Add active reader text's content
+      if (isActiveReaderToggleEnabled) {
+        responseFields[section.instance.subContentId] =
+          document.createElement('div');
+        responseFields[section.instance.subContentId].classList.add(
+          'h5p-interactive-book-summary-text-toggle',
+          `h5p-content-chapter-${section.instance.subContentId}`,
+          'hidden'
+        );
+        responseFields[section.instance.subContentId].innerHTML =
+          section.instance.getResponse();
+        sectionRow.appendChild(responseFields[section.instance.subContentId]);
+      }
+
+      sectionRowContainer.appendChild(titles[section.instance.subContentId]);
+      sectionRowContainer.appendChild(score);
       sectionElements.push(sectionRow);
     }
     if ( sectionElements.length) {
@@ -628,6 +664,11 @@ class Summary extends H5P.EventDispatcher {
     emptySummaryList.innerHTML = this.l10n.noInteractions;
     summaryList.appendChild(emptySummaryList);
     wrapper.appendChild(summaryList);
+
+    // Resize the page when user toggle the text response item
+    summaryList.addEventListener("transitionend", () => {
+      this.parent.trigger('resize');
+    });
 
     this.wrapper.appendChild(wrapper);
   }
