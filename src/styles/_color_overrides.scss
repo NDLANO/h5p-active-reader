@@ -306,3 +306,20 @@ button {
     }
   }
 }
+
+// H5P.KeywordSelector
+.h5p-keyword-selector {
+  .h5p-keyword-selector-keyword-item {
+    background-color: var(--color-base-5, rgba(26,115,217,.05));
+    color: var(--color-base-85, #1356a3);
+
+    &:hover {
+      background-color: var(--color-base-10, rgba(26,115,217,.1));
+    }
+
+    &[aria-checked="true"] {
+      background-color: var(--color-base, #1a73d9);
+      color: var(--color-text, #fff);
+    }
+  }
+}
