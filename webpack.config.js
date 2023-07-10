@@ -17,6 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true
   },
+  target: ['browserslist'],
   optimization: {
     minimize: mode === 'production',
     minimizer: [
