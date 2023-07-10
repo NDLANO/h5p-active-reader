@@ -1,60 +1,23 @@
 {
-  "globals": {
-    "H5P": "readonly",
-    "H5PIntegration": "readonly",
-    "H5PEditor": "readonly"
-  },
   "env": {
-    "es6": true,
-    "browser": true
+    "browser": true,
+    "node": true,
+    "es2020": true
   },
   "extends": [
-    "eslint:recommended"
+    "eslint-config-ndla-h5p",
+    "plugin:jsdoc/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 9,
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": 2020
   },
-  "rules": {
-    "valid-jsdoc": "off",
-    "semi": [2, "always"],
-    "indent": ["error", 2, {"SwitchCase": 1}],
-    "brace-style": ["error", "stroustrup"],
-    "keyword-spacing": [
-      "error",
-      {
-        "after": true
+  "plugins": ["jsdoc"],
+  "settings": {
+    "jsdoc": {
+      "preferredTypes": {
+        "Function": "function"
       }
-    ],
-    "comma-spacing": [
-      "error",
-      {
-        "before": false,
-        "after": true
-      }
-    ],
-    "space-before-blocks": "error",
-    "space-before-function-paren": ["error", {
-      "anonymous": "always",
-      "named": "never",
-      "asyncArrow": "always"
-    }],
-    "no-extra-boolean-cast": "off",
-    "no-console": [
-      "error",
-      {
-        "allow": [
-          "warn",
-          "error"
-        ]
-      }
-    ],
-    "no-restricted-globals": [
-      2,
-      "event"
-    ],
-    "react/prop-types": 0
-  },
-  "ignorePatterns": ["webpack.config.js"]
+    }
+  }
 }
-

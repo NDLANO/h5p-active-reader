@@ -4,6 +4,7 @@
   "description": "An active reader which displays content in pages and sections",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint './src/**/*.js'",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"
   },
@@ -26,6 +27,8 @@
     "core-js": "3.23.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.18.0",
+    "eslint-config-ndla-h5p": "github:ndlano/eslint-config-ndla-h5p",
+    "eslint-plugin-jsdoc": "^46.4.3",
     "mini-css-extract-plugin": "^2.6.1",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",

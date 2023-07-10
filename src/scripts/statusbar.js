@@ -71,7 +71,7 @@ class StatusBar extends H5P.EventDispatcher {
 
       if (event.data.direction === 'next') {
         if (this.parent.activeChapter + 1 < this.parent.chapters.length) {
-          eventInput.chapter = `h5p-interactive-book-chapter-${this.parent.chapters[this.parent.activeChapter+1].instance.subContentId}`;
+          eventInput.chapter = `h5p-interactive-book-chapter-${this.parent.chapters[this.parent.activeChapter + 1].instance.subContentId}`;
         }
         else if (this.parent.hasSummary() && this.parent.activeChapter + 1 === this.parent.chapters.length) {
           this.parent.trigger('viewSummary', eventInput);
@@ -79,7 +79,7 @@ class StatusBar extends H5P.EventDispatcher {
       }
       else if (event.data.direction === 'prev') {
         if (this.parent.activeChapter > 0) {
-          eventInput.chapter = `h5p-interactive-book-chapter-${this.parent.chapters[this.parent.activeChapter-1].instance.subContentId}`;
+          eventInput.chapter = `h5p-interactive-book-chapter-${this.parent.chapters[this.parent.activeChapter - 1].instance.subContentId}`;
         }
       }
       if (eventInput.chapter) {
@@ -90,8 +90,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Update progress bar.
-   *
-   * @param {number} chapterId Chapter Id.
+   * @param {number} chapter Chapter Id.
    */
   updateProgressBar(chapter) {
     const barWidth = `${chapter / this.totalChapters * 100}%`;
@@ -146,7 +145,8 @@ class StatusBar extends H5P.EventDispatcher {
   }
 
   /**
-   * Add traversal buttons for sequential travel (next and previous chapter)
+   * Add traversal buttons for sequential travel (next and previous chapter).
+   * @returns {HTMLElement} HTML element.
    */
   addArrows() {
     const acm = {};
@@ -187,8 +187,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Add a menu button which hides and shows the navigation bar.
-   *
-   * @return {HTMLElement} Button node.
+   * @returns {HTMLElement} Button node.
    */
   createMenuToggleButton() {
     const button = document.createElement('a');
@@ -210,8 +209,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Check if menu is active/open
-   *
-   * @return {boolean}
+   * @returns {boolean} If open, true. Else false.
    */
   isMenuOpen() {
     return this.menuToggleButton.classList.contains('h5p-interactive-book-status-menu-active');
@@ -219,8 +217,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Add progress bar.
-   *
-   * @return {object} Progress bar elements.
+   * @returns {object} Progress bar elements.
    */
   createProgressBar() {
     const progress = document.createElement('div');
@@ -239,8 +236,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Add a paragraph which indicates which chapter is active.
-   *
-   * @return {object} Chapter title elements.
+   * @returns {object} Chapter title elements.
    */
   createChapterTitle() {
     const text = document.createElement('h1');
@@ -257,8 +253,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Add a button which scrolls to the top of the page.
-   *
-   * @return {HTMLElement} Button.
+   * @returns {HTMLElement} Button.
    */
   createToTopButton() {
     const button = document.createElement('div');
@@ -282,7 +277,6 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Set the visibility.
-   *
    * @param {boolean} hide True will hide the bar.
    */
   setVisibility(hide) {
@@ -296,8 +290,7 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Add a status-button which shows current and total chapters.
-   *
-   * @return {object} Progress elements.
+   * @returns {object} Progress elements.
    */
   createProgressIndicator() {
     const current = document.createElement('span');
@@ -340,7 +333,6 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Edit button state on both the top and bottom bar.
-   *
    * @param {string} target Prev or Next.
    * @param {boolean} disable True will disable the target button.
    */
@@ -357,7 +349,6 @@ class StatusBar extends H5P.EventDispatcher {
 
   /**
    * Creates the fullscreen button.
-   *
    * @returns {Element} The button dom element
    */
   createFullScreenButton() {

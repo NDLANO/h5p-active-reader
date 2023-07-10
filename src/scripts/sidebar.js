@@ -22,7 +22,7 @@ class SideBar extends H5P.EventDispatcher {
       this.container.appendChild(this.titleElem);
     }
 
-    this.chapterNodes.forEach(element => {
+    this.chapterNodes.forEach((element) => {
       this.content.appendChild(element);
     });
 
@@ -62,7 +62,7 @@ class SideBar extends H5P.EventDispatcher {
       for (let sectionIndex = 0; sectionIndex < sections.length; sectionIndex++) {
         const section = sections[sectionIndex];
         const sectionButton = section.querySelector('.section-button');
-        sectionButton.addEventListener('keydown', e => {
+        sectionButton.addEventListener('keydown', (e) => {
           switch (e.keyCode) {
             case keyCodes.UP:
               this.setFocusToSectionItem(i, sectionIndex, -1);
@@ -166,8 +166,7 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Get sidebar DOM.
-   *
-   * @return {HTMLElement} DOM for sidebar.
+   * @returns {HTMLElement} DOM for sidebar.
    */
   addSideBar() {
     const container = document.createElement('div');
@@ -179,9 +178,8 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Get main title.
-   *
-   * @param {string} title Title.
-   * @return {HTMLElement} Title element.
+   * @param {string} titleText Title.
+   * @returns {HTMLElement} Title element.
    */
   addMainTitle(titleText) {
     const title = document.createElement('h2');
@@ -198,9 +196,8 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Find sections in chapter.
-   *
    * @param {object} columnData Column data.
-   * @return {object[]} Sections data.
+   * @returns {object[]} Sections data.
    */
   findSectionsInChapter(columnData) {
     const sectionsData = [];
@@ -233,9 +230,8 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Find all chapters.
-   *
    * @param {object[]} columnsData Columns data.
-   * @return {object[]} Chapters data.
+   * @returns {object[]} Chapters data.
    */
   findAllChapters(columnsData) {
     const chapters = [];
@@ -255,7 +251,7 @@ class SideBar extends H5P.EventDispatcher {
       chapters.push({
         sections: [],
         title: this.l10n.summaryHeader,
-        id: `h5p-interactive-book-chapter-summary`,
+        id: 'h5p-interactive-book-chapter-summary',
         isSummary: true,
       });
     }
@@ -264,7 +260,6 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Toggle chapter menu.
-   *
    * @param {HTMLElement} chapterNode Chapter.
    * @param {boolean} collapse If true, will collapse chapter.
    */
@@ -303,7 +298,6 @@ class SideBar extends H5P.EventDispatcher {
   /**
    * Fires whenever a redirect is happening in parent
    * All chapters will be collapsed except for the active
-   *
    * @param {number} chapterId The chapter that should stay open in the menu.
    */
   redirectHandler(chapterId) {
@@ -343,7 +337,6 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Update the indicator on a specific chapter.
-   *
    * @param {number} chapterId The chapter that should be updated.
    * @param {string} status Status.
    */
@@ -379,7 +372,6 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Set section marker.
-   *
    * @param {number} chapterId Chapter Id.
    * @param {number} sectionId Section Id.
    */
@@ -395,10 +387,9 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Create chapter.
-   *
    * @param {object} chapter Chapter data.
    * @param {number} chapterId Chapter Id.
-   * @return {HTMLElement} Chapter node.
+   * @returns {HTMLElement} Chapter node.
    */
   getNodesFromChapter(chapter, chapterId) {
     const chapterNode = document.createElement('li');
@@ -535,10 +526,10 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Create a section link
-   * @param chapterId
-   * @param i Index of section
-   * @param [title] Force title
-   * @param [headerNumber] Set header index within section to link to.
+   * @param {string} chapterId ChapterId.
+   * @param {number} i Index of section.
+   * @param {string} [title] Force title.
+   * @param {number} [headerNumber] Set header index within section to link to.
    * @returns {Element} Section node containing the link
    */
   createSectionLink(chapterId, i, title = null, headerNumber = null) {
@@ -589,8 +580,7 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Get chapter elements.
-   *
-   * @return {HTMLElement[]} Chapter elements.
+   * @returns {HTMLElement[]} Chapter elements.
    */
   getChapterNodes() {
     return this.chapters.map((chapter, index) => this.getNodesFromChapter(chapter, index));
@@ -598,7 +588,7 @@ class SideBar extends H5P.EventDispatcher {
 
   /**
    * Detect whether navigation is open on a small surface(pc or mobile).
-   * @return {boolean} True, if navigation is open on mobile view.
+   * @returns {boolean} True, if navigation is open on mobile view.
    */
   isOpenOnMobile() {
     return this.parent.isMenuOpen() && this.parent.isSmallSurface();

@@ -8,11 +8,10 @@ import Colors from './colors';
 
 export default class ActiveReader extends H5P.EventDispatcher {
   /**
-   * @constructor
-   *
-   * @param {object} config
-   * @param {string} contentId
-   * @param {object} contentData
+   * @class
+   * @param {object} config Parameters from editor.
+   * @param {string} contentId Content id.
+   * @param {object} contentData Content data, e.g. previous state.
    */
   constructor(config, contentId, contentData = {}) {
     super();
@@ -73,8 +72,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Check if result has been submitted or input has been given.
-     *
-     * @return {boolean} True, if answer was given.
+     * @returns {boolean} True, if answer was given.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
      */
     this.getAnswerGiven = () => this.chapters.reduce((accu, current) => {
@@ -86,8 +84,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Get latest score.
-     *
-     * @return {number} Latest score.
+     * @returns {number} Latest score.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
      */
     this.getScore = () => {
@@ -108,8 +105,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Get maximum possible score.
-     *
-     * @return {number} Score necessary for mastering.
+     * @returns {number} Score necessary for mastering.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
      */
     this.getMaxScore = () => {
@@ -130,11 +126,10 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Show solutions.
-     *
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
      */
     this.showSolutions = () => {
-      this.chapters.forEach(chapter => {
+      this.chapters.forEach((chapter) => {
         if (typeof chapter.instance.toggleReadSpeaker === 'function') {
           chapter.instance.toggleReadSpeaker(true);
         }
@@ -149,7 +144,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Reset task.
-     *
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
      */
     this.resetTask = () => {
@@ -162,7 +156,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
             chapter.instance.resetTask();
           }
           chapter.tasksLeft = chapter.maxTasks;
-          chapter.sections.forEach(section => section.taskDone = false);
+          chapter.sections.forEach((section) => section.taskDone = false);
           this.setChapterRead(index, false);
         });
 
@@ -174,7 +168,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
         this.trigger('newChapter', {
           h5pbookid: this.contentId,
           chapter: this.pageContent.columnNodes[0].id,
-          section: "top",
+          section: 'top',
         });
 
         if ( this.hasCover()) {
@@ -186,8 +180,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Get xAPI data.
-     *
-     * @return {object} xAPI statement.
+     * @returns {object} xAPI statement.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
      */
     this.getXAPIData = () => {
@@ -202,56 +195,53 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
       return {
         statement: xAPIEvent.data.statement,
-        children: this.getXAPIDataFromChildren(this.chapters.map(chapter => chapter.instance))
+        children: this.getXAPIDataFromChildren(this.chapters.map((chapter) => chapter.instance))
       };
     };
 
     /**
      * Get xAPI data from sub content types.
-     *
      * @param {object[]} instances H5P instances.
-     * @return {object[]} xAPI data objects used to build a report.
+     * @returns {object[]} xAPI data objects used to build a report.
      */
-    this.getXAPIDataFromChildren = instances => {
-      return instances.map(instance => {
+    this.getXAPIDataFromChildren = (instances) => {
+      return instances.map((instance) => {
         if (typeof instance.getXAPIData === 'function') {
           return instance.getXAPIData();
         }
-      }).filter(data => !!data);
+      }).filter((data) => !!data);
     };
 
     /**
      * Add question itself to the definition part of an xAPIEvent.
-     *
-     * @param {H5P.XAPIEvent} xAPIEvent.
+     * @param {H5P.XAPIEvent} xAPIEvent XAPI event.
      */
-    this.addQuestionToXAPI = xAPIEvent => {
+    this.addQuestionToXAPI = (xAPIEvent) => {
       const definition = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
       Object.assign(definition, this.getxAPIDefinition());
     };
 
     /**
      * Generate xAPI object definition used in xAPI statements.
-     *
-     * @return {object} xAPI definition.
+     * @returns {object} xAPI definition.
      */
     this.getxAPIDefinition = () => ({
       interactionType: 'compound',
       type: 'http://adlnet.gov/expapi/activities/cmi.interaction',
-      description: {'en-US': ''}
+      description: { 'en-US': '' }
     });
 
     /**
      * Answer call to return the current state.
-     * @return {object} Current state.
+     * @returns {object} Current state.
      */
     this.getCurrentState = () => {
       // Get relevant state information from non-summary chapters
       const chapters = this.chapters
-        .filter(chapter => !chapter.isSummary)
-        .map(chapter => ({
+        .filter((chapter) => !chapter.isSummary)
+        .map((chapter) => ({
           completed: chapter.completed,
-          sections: chapter.sections.map(section => ({taskDone: section.taskDone})),
+          sections: chapter.sections.map((section) => ({ taskDone: section.taskDone })),
           state: chapter.instance.getCurrentState()
         }));
 
@@ -282,43 +272,39 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Check if there's a cover.
-     *
-     * @return {boolean} True, if there's a cover.
+     * @returns {boolean} True, if there's a cover.
      */
     this.hasCover = () => this.cover && this.cover.container;
 
     /**
      * Check if the configs are set to use summary
-     * @param chapters
-     * @return {*|boolean}
+     * @param {object[]} chapters Chapters.
+     * @returns {*|boolean} True, if should have summary.
      */
     this.hasSummary = (chapters = this.chapters ) => this.hasChaptersTasks(chapters) && this.params.behaviour.displaySummary && this.params.behaviour.displaySummary === true;
 
     /**
      * Check if chapters has tasks
-     *
-     * @param {Array} chapters
-     * @return {boolean}
+     * @param {object[]} chapters Chapters.
+     * @returns {boolean} True, if has tasks.
      */
-    this.hasChaptersTasks = chapters => chapters.filter(chapter => chapter.sections.filter(section => section.isTask === true).length > 0).length > 0;
+    this.hasChaptersTasks = (chapters) => chapters.filter((chapter) => chapter.sections.filter((section) => section.isTask === true).length > 0).length > 0;
 
     /**
      * Check if there are valid chapters.
-     *
-     * @return {boolean} True, if there are valid(not empty) chapters.
+     * @returns {boolean} True, if there are valid(not empty) chapters.
      */
     this.hasValidChapters = () => this.params.chapters.length > 0;
 
     /**
      * Get number of active chapter.
-     *
-     * @return {number} Number of active chapter.
+     * @param {boolean} getActualChapter If true, get actual chapter.
+     * @returns {number} Number of active chapter.
      */
     this.getActiveChapter = (getActualChapter = false) => !getActualChapter ? this.activeChapter : this.chapters[this.activeChapter];
 
     /**
      * Set number of active chapter.
-     *
      * @param {number} chapterId Number of active chapter.
      */
     this.setActiveChapter = (chapterId) => {
@@ -330,9 +316,8 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Validate fragments.
-     *
      * @param {object} fragments Fragments object from URL.
-     * @return {boolean} True, if fragments are valid.
+     * @returns {boolean} True, if fragments are valid.
      */
     this.validateFragments = (fragments) => {
       return fragments.chapter !== undefined &&
@@ -341,7 +326,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Bubble events from child to parent
-     *
      * @param {object} origin Origin of the Event
      * @param {string} eventName Name of the Event
      * @param {object} target Target to trigger event on
@@ -361,33 +345,32 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Check if menu is open
-     * @return {boolean}
+     * @returns {boolean} True, if menu is open. Else false.
      */
     this.isMenuOpen = () => this.statusBarHeader.isMenuOpen();
 
     /**
      * Detect if wrapper is a small surface
-     * @return {*}
+     * @returns {boolean} True, if small surface.
      */
     this.isSmallSurface = () => this.mainWrapper && this.mainWrapper.hasClass(this.smallSurface);
 
     /**
      * Get the ratio of the wrapper
-     *
-     * @return {number}
+     * @returns {number} Ratio of wrapper.
      */
     this.getRatio = () => this.mainWrapper.width() / parseFloat(this.mainWrapper.css('font-size'));
 
     /**
      * Add/remove classname based on the ratio
-     * @param {jQuery} wrapper
-     * @param {number} ratio
+     * @param {H5P.jQuery} wrapper Wrapper.
+     * @param {number} ratio Ratio.
      */
     this.setWrapperClassFromRatio = (wrapper, ratio = this.getRatio()) => {
       if ( ratio === this.currentRatio) {
         return;
       }
-      this.breakpoints().forEach(item => {
+      this.breakpoints().forEach((item) => {
         if (item.shouldAdd(ratio)) {
           this.mainWrapper.addClass(item.className);
         }
@@ -510,38 +493,34 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Check if the current chapter is read.
-     *
      * @returns {boolean} True, if current chapter was read.
      */
     this.isCurrentChapterRead = () => this.isChapterRead(this.chapters[this.activeChapter], this.params.behaviour.progressAuto);
 
     /**
      * Checks if a chapter is read
-     *
-     * @param chapter
-     * @param {boolean} autoProgress
-     * @returns {boolean}
+     * @param {object} chapter Chapter.
+     * @param {boolean} autoProgress Auto progress.
+     * @returns {boolean} True, if chapter was read.
      */
     this.isChapterRead = (chapter, autoProgress = this.params.behaviour.progressAuto) =>
       chapter.completed || (autoProgress && chapter.tasksLeft === 0);
 
     /**
      * Check if chapter is final one, has no tasks and all other chapters are done.
-     *
      * @param {number} chapterId Chapter id.
-     * @return {boolean} True, if final chapter without tasks and other chapters done.
+     * @returns {boolean} True, if final chapter without tasks and other chapters done.
      */
     this.isFinalChapterWithoutTask = (chapterId) => {
       return this.chapters[chapterId].maxTasks === 0 &&
         this.chapters.slice(0, chapterId).concat(this.chapters.slice(chapterId + 1))
-          .every(chapter => chapter.tasksLeft === 0);
+          .every((chapter) => chapter.tasksLeft === 0);
     };
 
     /**
      * Set the current chapter as completed.
-     *
      * @param {number} [chapterId] Chapter Id, defaults to current chapter.
-     * @param {boolean} [read=true] True for chapter read, false for not read.
+     * @param {boolean} [read] True for chapter read, false for not read.
      */
     this.setChapterRead = (chapterId = this.activeChapter, read = true) => {
       this.handleChapterCompletion(chapterId, read);
@@ -550,24 +529,22 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Checks if chapter has started on any of the sections
-     *
-     * @param chapter
-     * @return {boolean}
+     * @param {object} chapter Chapter.
+     * @returns {boolean} True, if chapter has started tasks.
      */
-    this.hasChapterStartedTasks = chapter => chapter.sections.filter(section => section.taskDone).length > 0;
+    this.hasChapterStartedTasks = (chapter) => chapter.sections.filter((section) => section.taskDone).length > 0;
 
     /**
      * Get textual status for chapter
-     *
-     * @param chapter
-     * @param {boolean} progressAuto
-     * @return {string}
+     * @param {object} chapter Chapter.
+     * @param {boolean} progressAuto Auto progress.
+     * @returns {string} Chapter status.
      */
     this.getChapterStatus = (chapter, progressAuto = this.params.behaviour.progressAuto) => {
       let status = 'BLANK';
 
       if (this.isChapterRead(chapter, progressAuto)) {
-        status = "DONE";
+        status = 'DONE';
       }
       else if (this.hasChapterStartedTasks(chapter)) {
         status = 'STARTED';
@@ -578,9 +555,8 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Update statistics on the main chapter.
-     *
      * @param {number} chapterId Chapter Id.
-     * @param {boolean} hasChangedChapter
+     * @param {boolean} hasChangedChapter Has changed chapter.
      */
     this.updateChapterProgress = (chapterId, hasChangedChapter = false) => {
       if (!this.params.behaviour.progressIndicators) {
@@ -610,23 +586,21 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Get id of chapter.
-     *
      * @param {string} chapterUUID ChapterUUID.
-     * @return {number} Chapter Id.
+     * @returns {number} Chapter Id.
      */
     this.getChapterId = (chapterUUID) => {
       chapterUUID = chapterUUID.replace('h5p-interactive-book-chapter-', '');
 
       const chapterId = this.chapters
-        .map(chapter => chapter.instance.subContentId).indexOf(chapterUUID);
+        .map((chapter) => chapter.instance.subContentId).indexOf(chapterUUID);
       return chapterId === -1 ? 0 : chapterId;
     };
 
     /**
      * Handle chapter completion, e.g. trigger xAPI statements
-     *
      * @param {number} chapterId Id of the chapter that was completed.
-     * @param {boolean} [completed=true] True for completed, false for uncompleted.
+     * @param {boolean} [completed] True for completed, false for uncompleted.
      */
     this.handleChapterCompletion = (chapterId, completed = true) => {
       const chapter = this.chapters[chapterId];
@@ -639,7 +613,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
         // Reset chapter and book completion.
         chapter.completed = false;
         this.completed = false;
-        this.trigger('bookCompleted', {completed: this.completed});
+        this.trigger('bookCompleted', { completed: this.completed });
         return;
       }
 
@@ -650,14 +624,15 @@ export default class ActiveReader extends H5P.EventDispatcher {
       }
 
       // All chapters completed
-      if (!this.completed && this.chapters.filter(chapter => !chapter.isSummary).every(chapter => chapter.completed)) {
+      if (!this.completed && this.chapters.filter((chapter) => !chapter.isSummary).every((chapter) => chapter.completed)) {
         this.completed = true;
-        this.trigger('bookCompleted', {completed: this.completed});
+        this.trigger('bookCompleted', { completed: this.completed });
       }
     };
 
     /**
      * Check if the content height exceeds the window.
+     * @returns {boolean} True, if is full screen.
      */
     this.shouldFooterBeHidden = () => {
       // Always show except for in fullscreen
@@ -667,7 +642,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Get content container width.
-     * @return {number} Container width or 0.
+     * @returns {number} Container width or 0.
      */
     this.getContainerWidth = () => {
       return (this.pageContent && this.pageContent.container) ? this.pageContent.container.offsetWidth : 0;
@@ -675,7 +650,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Change the current active chapter.
-     *
      * @param {boolean} redirectOnLoad Is this a redirect which happens immediately?
      */
     this.changeChapter = (redirectOnLoad) => {
@@ -687,22 +661,21 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Get list of classname and conditions for when to add the classname to the content type
-     *
-     * @return {[{className: string, shouldAdd: (function(*): boolean)}, {className: string, shouldAdd: (function(*): boolean|boolean)}, {className: string, shouldAdd: (function(*): boolean)}]}
+     * @returns {object} Breakpoints.
      */
     this.breakpoints = () => {
       return [
         {
-          "className": this.smallSurface,
-          "shouldAdd": ratio => ratio < 43,
+          'className': this.smallSurface,
+          'shouldAdd': (ratio) => ratio < 43,
         },
         {
-          "className": this.mediumSurface,
-          "shouldAdd": ratio => ratio >= 43 && ratio < 60,
+          'className': this.mediumSurface,
+          'shouldAdd': (ratio) => ratio >= 43 && ratio < 60,
         },
         {
-          "className": this.largeSurface,
-          "shouldAdd": ratio => ratio >= 60,
+          'className': this.largeSurface,
+          'shouldAdd': (ratio) => ratio >= 60,
         },
       ];
     };
@@ -742,7 +715,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Redirect chapter.
-     *
      * @param {object} target Target data.
      * @param {string} target.h5pbookid Book id.
      * @param {string} target.chapter Chapter UUID.
@@ -775,7 +747,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Set a section progress indicator.
-     *
      * @param {string} sectionUUID UUID of target section.
      * @param {number} chapterId Number of targetchapter.
      */
@@ -798,6 +769,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Add listener for hash changes to specified window
+     * @param {Window} hashWindow Window.
      */
     this.addHashListener = (hashWindow) => {
       hashWindow.addEventListener('hashchange', (event) => {
@@ -821,10 +793,9 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Display book cover
-     *
-     * @param wrapper
+     * @param {HTMLElement} wrapper Wrapper.
      */
-    this.displayCover = wrapper => {
+    this.displayCover = (wrapper) => {
       this.hideAllElements(true);
       wrapper.append(this.cover.container);
       wrapper.addClass('covered');
@@ -833,7 +804,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Attach library to wrapper
-     * @param {jQuery} $wrapper
+     * @param {H5P.jQuery} $wrapper Wrapper.
      */
     this.attach = ($wrapper) => {
       this.mainWrapper = $wrapper;
@@ -861,14 +832,15 @@ export default class ActiveReader extends H5P.EventDispatcher {
       this.$wrapper = $wrapper;
 
       if (this.params.behaviour.defaultTableOfContents && !this.isSmallSurface()) {
-        this.trigger('toggleMenu', {shouldNotFocusNav: true});
+        this.trigger('toggleMenu', { shouldNotFocusNav: true });
       }
 
       this.pageContent.updateFooter();
     };
 
     /**
-     * Checks if browser is IE Edge version 18 or earlier
+     * Checks if browser is IE Edge version 18 or earlier.
+     * @returns {boolean} True, if IE Edge version 18 or earlier.
      */
     this.isEdge18orEarlier = function () {
       const ua = window.navigator.userAgent;
@@ -885,7 +857,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     /**
      * Hide all elements.
-     *
      * @param {boolean} hide True to hide elements.
      */
     this.hideAllElements = function (hide) {
@@ -896,13 +867,13 @@ export default class ActiveReader extends H5P.EventDispatcher {
       ];
 
       if (hide) {
-        nodes.forEach(node => {
+        nodes.forEach((node) => {
           node.classList.add('h5p-content-hidden');
           node.classList.add('h5p-interactive-book-cover-present');
         });
       }
       else {
-        nodes.forEach(node => {
+        nodes.forEach((node) => {
           node.classList.remove('h5p-content-hidden');
           node.classList.remove('h5p-interactive-book-cover-present');
         });
@@ -976,51 +947,50 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
   /**
    * Make sure that the config used is in a good state. This includes default values for all language strings
-   *
-   * @param originalConfig
-   * @return {*}
+   * @param {object} originalConfig Original config.
+   * @returns {object} New config.
    */
   static sanitizeConfig(originalConfig) {
     const {
-      read = "Read",
-      displayTOC = "Display &#039;Table of contents&#039;",
-      hideTOC = "Hide &#039;Table of contents&#039;",
-      nextPage = "Next page",
-      previousPage = "Previous page",
-      chapterCompleted = "Page completed!",
-      partCompleted = "@pages of @total completed",
-      incompleteChapter = "Incomplete page",
-      navigateToTop = "Navigate to the top",
-      markAsFinished = "I have finished this page",
-      fullscreen = "Fullscreen",
-      exitFullscreen = "Exit fullscreen",
-      bookProgressSubtext = "@count of @total pages",
-      interactionsProgressSubtext = "@count of @total interactions",
-      submitReport = "Submit Report",
-      restartLabel = "Restart",
-      summaryHeader = "Summary",
-      allInteractions = "All interactions",
-      unansweredInteractions = "Unanswered interactions",
-      scoreText = "@score / @maxscore",
-      leftOutOfTotalCompleted = "@left of @max interactinos completed",
-      noInteractions = "No interactions",
-      score = "Score",
-      summaryAndSubmit = "Summary & submit",
-      noChapterInteractionBoldText = "You have not interacted with any pages.",
-      noChapterInteractionText = "You have to interact with at least one page before you can see the summary.",
-      yourAnswersAreSubmittedForReview = "Your answers are submitted for review!",
-      bookProgress = "Book progress",
-      interactionsProgress = "Interactions progress",
+      read = 'Read',
+      displayTOC = 'Display &#039;Table of contents&#039;',
+      hideTOC = 'Hide &#039;Table of contents&#039;',
+      nextPage = 'Next page',
+      previousPage = 'Previous page',
+      chapterCompleted = 'Page completed!',
+      partCompleted = '@pages of @total completed',
+      incompleteChapter = 'Incomplete page',
+      navigateToTop = 'Navigate to the top',
+      markAsFinished = 'I have finished this page',
+      fullscreen = 'Fullscreen',
+      exitFullscreen = 'Exit fullscreen',
+      bookProgressSubtext = '@count of @total pages',
+      interactionsProgressSubtext = '@count of @total interactions',
+      submitReport = 'Submit Report',
+      restartLabel = 'Restart',
+      summaryHeader = 'Summary',
+      allInteractions = 'All interactions',
+      unansweredInteractions = 'Unanswered interactions',
+      scoreText = '@score / @maxscore',
+      leftOutOfTotalCompleted = '@left of @max interactinos completed',
+      noInteractions = 'No interactions',
+      score = 'Score',
+      summaryAndSubmit = 'Summary & submit',
+      noChapterInteractionBoldText = 'You have not interacted with any pages.',
+      noChapterInteractionText = 'You have to interact with at least one page before you can see the summary.',
+      yourAnswersAreSubmittedForReview = 'Your answers are submitted for review!',
+      bookProgress = 'Book progress',
+      interactionsProgress = 'Interactions progress',
       totalScoreLabel = 'Total score',
       ...config
     } = originalConfig;
 
     config.chapters = config.chapters
-      .map(chapter => {
-        chapter.params.content = chapter.params.content.filter(content => content.content);
+      .map((chapter) => {
+        chapter.params.content = chapter.params.content.filter((content) => content.content);
         return chapter;
       })
-      .filter(chapter => chapter.params.content && chapter.params.content.length > 0);
+      .filter((chapter) => chapter.params.content && chapter.params.content.length > 0);
 
     config.behaviour.displaySummary = config.behaviour.displaySummary === undefined || config.behaviour.displaySummary;
 

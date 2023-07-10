@@ -39,8 +39,7 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create the top level element.
-   *
-   * @return {HTMLElement} Cover.
+   * @returns {HTMLElement} Cover.
    */
   createContainer() {
     const container = document.createElement('div');
@@ -50,8 +49,8 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create an element which contains both the cover image and a background bar.
-   *
-   * @param {object} coverImage Image object.
+   * @param {object} params Parameters.
+   * @returns {HTMLElement} Visuals.
    */
   createVisualsElement(params) {
     if (!params || !params.params) {
@@ -95,10 +94,10 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create Image.
-   *
    * @param {string} path Relative image path.
    * @param {number} contentId Content id.
-   * @param {string|null} altText
+   * @param {string|null} altText Alternative text.
+   * @returns {HTMLImageElement} Image.
    */
   createImage(path, contentId, altText) {
     const img = document.createElement('img');
@@ -114,8 +113,7 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create an element responsible for the bar behind an image.
-   *
-   * @return {HTMLElement} Horizontal bar in the background.
+   * @returns {HTMLElement} Horizontal bar in the background.
    */
   createCoverBar() {
     const coverBar = document.createElement('div');
@@ -125,9 +123,8 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create title.
-   *
    * @param {string} titleText Text for title element.
-   * @return {HTMLElement} Title element.
+   * @returns {HTMLElement} Title element.
    */
   createTitleElement(titleText) {
     const title = document.createElement('p');
@@ -142,9 +139,8 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create description.
-   *
    * @param {string} descriptionText Text for description element.
-   * @return {HTMLElement} Description element.
+   * @returns {HTMLElement} Description element.
    */
   createDescriptionElement(descriptionText) {
     if (!descriptionText) {
@@ -160,9 +156,8 @@ class Cover extends H5P.EventDispatcher {
 
   /**
    * Create a button element.
-   *
    * @param {string} buttonText Button text.
-   * @return {HTMLElement} Read button element.
+   * @returns {HTMLElement} Read button element.
    */
   createReadButton(buttonText) {
     const button = document.createElement('button');

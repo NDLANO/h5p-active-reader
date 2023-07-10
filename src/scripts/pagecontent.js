@@ -1,15 +1,14 @@
 import URLTools from './urltools';
-import Summary from "./summary";
+import Summary from './summary';
 
 class PageContent extends H5P.EventDispatcher {
   /**
-   * @constructor
-   *
-   * @param {object} config
-   * @param {string} contentId
-   * @param {object} contentData
-   * @param {object} parent
-   * @param {object} params
+   * @class
+   * @param {object} config Parameters from editor.
+   * @param {string} contentId Content id.
+   * @param {object} contentData Content data, e.g. previous state.
+   * @param {object} parent Parent instance.
+   * @param {object} params Parameters.
    */
   constructor(config, contentId, contentData, parent, params) {
     super();
@@ -45,12 +44,11 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Get chapters for the page
-   *
-   * @param {boolean} includeSummary
-   * @return {object[]} Chapters.
+   * @param {boolean} includeSummary If true, include summary.
+   * @returns {object[]} Chapters.
    */
   getChapters(includeSummary = true) {
-    return this.chapters.filter(chapter => !chapter.isSummary || chapter.isSummary && !!includeSummary);
+    return this.chapters.filter((chapter) => !chapter.isSummary || chapter.isSummary && !!includeSummary);
   }
 
   /**
@@ -58,22 +56,21 @@ class PageContent extends H5P.EventDispatcher {
    */
   resetChapters() {
     if (this.behaviour.progressIndicators && !this.behaviour.progressAuto) {
-      this.columnNodes.forEach(columnNode => {
+      this.columnNodes.forEach((columnNode) => {
         Array.from(columnNode.querySelectorAll('.h5p-interactive-book-status-progress-marker > input[type=checkbox]'))
-          .forEach(element => element.checked = false);
+          .forEach((element) => element.checked = false);
       });
     }
   }
 
   /**
    * Create page content.
-   *
-   * @return {HTMLElement} Page content.
+   * @returns {HTMLElement} Page content.
    */
   createPageContent() {
     const content = document.createElement('div');
     content.classList.add('h5p-interactive-book-content');
-    this.columnNodes.forEach(element => {
+    this.columnNodes.forEach((element) => {
       content.appendChild(element);
     });
 
@@ -106,9 +103,8 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Create page read checkbox.
-   *
    * @param {boolean} checked True, if box should be checked.
-   * @return {HTMLElement} Checkbox for marking a chapter as read.
+   * @returns {HTMLElement} Checkbox for marking a chapter as read.
    */
   createChapterReadCheckbox(checked) {
     const checkbox = document.createElement('input');
@@ -131,7 +127,6 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Inject section instance UUID into DOM.
-   *
    * @param {object[]} sections Sections.
    * @param {HTMLElement} columnNode Column element.
    */
@@ -145,7 +140,7 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Preload current chapter and the next one
-   * @param {number} chapterIndex
+   * @param {number} chapterIndex Chapter index.
    */
   preloadChapter(chapterIndex) {
     this.initializeChapter(chapterIndex);
@@ -154,7 +149,7 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Initialize chapter
-   * @param {number} chapterIndex
+   * @param {number} chapterIndex Chapter index.
    */
   initializeChapter(chapterIndex) {
     // Out of bound
@@ -168,7 +163,7 @@ class PageContent extends H5P.EventDispatcher {
 
       if (chapter.isInitialized) {
         chapter.instance.setChapters(this.getChapters(false));
-        columnNode.innerHTML = "";
+        columnNode.innerHTML = '';
       }
       // Attach
       chapter.instance.addSummaryPage(H5P.jQuery(columnNode));
@@ -195,11 +190,10 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Create Column instances.
-   *
    * @param {object} config Parameters.
    * @param {number} contentId Content id.
    * @param {object} contentData Content data.
-   * @return {number} start chapter
+   * @returns {number} start chapter
    */
   createColumns(config, contentId, contentData) {
     contentData = Object.assign({}, contentData);
@@ -290,7 +284,7 @@ class PageContent extends H5P.EventDispatcher {
       };
 
       columnNode.classList.add('h5p-interactive-book-chapter');
-      columnNode.id = `h5p-interactive-book-chapter-summary`;
+      columnNode.id = 'h5p-interactive-book-chapter-summary';
 
       chapter.maxTasks = chapter.tasksLeft;
       chapters.push(chapter);
@@ -298,7 +292,7 @@ class PageContent extends H5P.EventDispatcher {
     }
 
     // First chapter should be visible, except if the URL of previous state says otherwise.
-    if (urlFragments.chapter && urlFragments.h5pbookid == this.parent.contentId) {
+    if (urlFragments.chapter && urlFragments.h5pbookid === this.parent.contentId) {
       const chapterIndex = this.findChapterIndex(urlFragments.chapter);
       this.parent.setActiveChapter(chapterIndex);
       const headerNumber = urlFragments.headerNumber;
@@ -320,7 +314,6 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Redirect section.
-   *
    * @param {string} sectionUUID Section UUID or top.
    * @param {number} headerNumber Header index within section
    */
@@ -360,9 +353,8 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Find chapter index.
-   *
    * @param {string} chapterUUID Chapter UUID.
-   * @return {number} Chapter id.
+   * @returns {number} Chapter id.
    */
   findChapterIndex(chapterUUID) {
     let position = -1;
@@ -381,7 +373,6 @@ class PageContent extends H5P.EventDispatcher {
 
   /**
    * Change chapter.
-   *
    * @param {boolean} redirectOnLoad True if should redirect on load.
    * @param {object} target Target.
    */

@@ -1,5 +1,7 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// terser-webpack-plugin is provided by webpack automatically
+// eslint-disable-next-line import/no-extraneous-dependencies
 const TerserPlugin = require('terser-webpack-plugin');
 
 const mode = process.argv.includes('--mode=production') ?
@@ -46,9 +48,9 @@ module.exports = {
               publicPath: ''
             }
           },
-          { loader: "css-loader" },
+          { loader: 'css-loader' },
           {
-            loader: "sass-loader"
+            loader: 'sass-loader'
           }
         ]
       },
