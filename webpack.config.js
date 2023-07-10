@@ -2,23 +2,23 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isProd = (nodeEnv === 'production');
+const mode = process.argv.includes('--mode=production') ?
+  'production' : 'development';
 const libraryName = process.env.npm_package_name;
 
 module.exports = {
-  mode: nodeEnv,
+  mode: mode,
   context: path.resolve(__dirname, 'src'),
   entry: {
     dist: './entries/main.js'
   },
-  devtool: (isProd) ? undefined : 'eval-cheap-module-source-map',
   output: {
     filename: `${libraryName}.js`,
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
   },
   optimization: {
-    minimize: isProd,
+    minimize: mode === 'production',
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -71,4 +71,5 @@ module.exports = {
   externals: {
     jquery: 'H5P.jQuery'
   },
+  ...(mode !== 'production' && { devtool: 'eval-cheap-module-source-map' })
 };
