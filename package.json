@@ -1,6 +1,6 @@
 {
   "name": "h5p-active-reader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An active reader which displays content in pages and sections",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,20 +19,20 @@
   "author": "Joubel",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.22.8",
+    "@babel/core": "^7.22.10",
     "@babel/plugin-transform-object-assign": "^7.22.5",
     "@babel/plugin-transform-typeof-symbol": "^7.22.5",
-    "@babel/preset-env": "^7.22.7",
+    "@babel/preset-env": "^7.22.10",
     "babel-loader": "^9.1.3",
-    "core-js": "3.31.1",
+    "core-js": "3.32.0",
     "css-loader": "^6.8.1",
-    "eslint": "^8.44.0",
+    "eslint": "^8.47.0",
     "eslint-config-ndla-h5p": "github:ndlano/eslint-config-ndla-h5p",
-    "eslint-plugin-jsdoc": "^46.4.3",
+    "eslint-plugin-jsdoc": "^46.4.6",
     "mini-css-extract-plugin": "^2.7.6",
-    "sass": "^1.63.6",
+    "sass": "^1.65.1",
     "sass-loader": "^13.3.2",
-    "webpack": "^5.88.1",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
