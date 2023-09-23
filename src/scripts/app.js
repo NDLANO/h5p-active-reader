@@ -147,7 +147,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
      */
     this.resetTask = () => {
-      if ( this.hasValidChapters()) {
+      if (this.hasValidChapters()) {
         this.chapters.forEach((chapter, index) => {
           if (!chapter.isInitialized || chapter.isSummary) {
             return;
@@ -175,6 +175,15 @@ export default class ActiveReader extends H5P.EventDispatcher {
           this.displayCover(this.mainWrapper);
         }
         this.isAnswerUpdated = false;
+      }
+
+      /** Prevent auto-redirecting after starting over. */
+      try {
+        window.location.hash = '';
+        top.location.hash = '';
+      }
+      catch {
+        // not allowed to write top.location when using LTI
       }
     };
 
@@ -240,9 +249,9 @@ export default class ActiveReader extends H5P.EventDispatcher {
       const chapters = this.chapters
         .filter((chapter) => !chapter.isSummary)
         .map((chapter) => ({
-          completed: chapter.completed,
-          sections: chapter.sections.map((section) => ({ taskDone: section.taskDone })),
-          state: chapter.instance.getCurrentState()
+          completed: chapter.completed || null,
+          sections: chapter.sections.map((section) => ({ taskDone: section.taskDone || null })),
+          state: chapter.instance.getCurrentState() || null
         }));
 
       return {
@@ -709,7 +718,13 @@ export default class ActiveReader extends H5P.EventDispatcher {
       const isInitialized = self.chapters.length;
 
       if (self !== this && isActionVerb && isInitialized) {
-        self.setSectionStatusByID(this.subContentId || this.contentData.subContentId, self.activeChapter);
+        const sectionUUID = this.subContentId || this.contentData?.subContentId;
+
+        if (!sectionUUID) {
+          return;
+        }
+
+        self.setSectionStatusByID(sectionUUID, self.activeChapter);
       }
     });
 
