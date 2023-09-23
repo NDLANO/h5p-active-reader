@@ -23,7 +23,9 @@ class Summary extends H5P.EventDispatcher {
     this.filterActionAll = 'all';
     this.filterActionUnanswered = 'unanswered';
     this.bookCompleted = false;
-    this.tempState = JSON.stringify(this.parent.previousState && this.parent.previousState.chapters ? this.parent.previousState.chapters : this.getChapterStats());
+    this.tempState = JSON.stringify(
+      this.parent.previousState?.chapters ?? this.getChapterStats()
+    );
 
     parent.on('bookCompleted', (event) => this.setBookComplete(event.data.completed));
     parent.on('toggleMenu', () => {
@@ -47,7 +49,7 @@ class Summary extends H5P.EventDispatcher {
     let summaryFooter = this.parent.mainWrapper ?
       this.parent.mainWrapper[0].querySelector('.h5p-interactive-book-summary-footer') :
       null;
-    if ( !summaryFooter && this.parent.isSmallSurface()) {
+    if (!summaryFooter && this.parent.isSmallSurface()) {
       summaryFooter = document.createElement('div');
       summaryFooter.classList.add('h5p-interactive-book-summary-footer');
 
@@ -121,14 +123,13 @@ class Summary extends H5P.EventDispatcher {
       const newChapter = {
         h5pbookid: this.parent.contentId,
         chapter: 'h5p-interactive-book-chapter-summary',
-        section: 'top',
+        section: 'top'
       };
       this.parent.trigger('newChapter', newChapter);
       if (this.parent.isMenuOpen() && this.parent.isSmallSurface()) {
         this.parent.trigger('toggleMenu');
       }
     };
-    //button.disabled = true;
 
     const paperIcon = document.createElement('span');
     paperIcon.classList.add('h5p-interactive-book-summary-icon');
@@ -743,7 +744,14 @@ class Summary extends H5P.EventDispatcher {
   checkTheAnswerIsUpdated() {
     const chapters = this.getChapterStats();
     const previousState = JSON.parse(this.tempState);
+
     for (const index of chapters.keys()) {
+      if (
+        !previousState[index].state || !chapters[index].state
+      ) {
+        continue;
+      }
+
       let previousStateInstance = previousState[index].state.instances;
       let currentStateInstance = chapters[index].state.instances;
       let currentTaskDone = chapters[index].sections;

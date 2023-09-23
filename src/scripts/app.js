@@ -53,7 +53,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
     this.chapters = [];
 
     this.isSubmitButtonEnabled = false;
-    this.isAnswerUpdated = true;
+    this.isAnswerUpdated = false;
     if (contentData.isScoringEnabled !== undefined || contentData.isReportingEnabled !== undefined) {
       this.isSubmitButtonEnabled = (contentData.isScoringEnabled || contentData.isReportingEnabled);
     }
@@ -175,15 +175,6 @@ export default class ActiveReader extends H5P.EventDispatcher {
           this.displayCover(this.mainWrapper);
         }
         this.isAnswerUpdated = false;
-      }
-
-      /** Prevent auto-redirecting after starting over. */
-      try {
-        window.location.hash = '';
-        top.location.hash = '';
-      }
-      catch {
-        // not allowed to write top.location when using LTI
       }
     };
 
