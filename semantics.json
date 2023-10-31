@@ -178,6 +178,57 @@
         "label": "Display summary",
         "description": "When enabled the user can see a summary and submit the progress/answers",
         "default": true
+      },
+      {
+        "name": "showTotalScore",
+        "type": "boolean",
+        "label": "Show total score progress",
+        "description": "When enabled the user will see a total score progress bar.",
+        "default": true,
+        "state": "new",
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "displaySummary",
+              "equals": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "showArticleProgress",
+        "type": "boolean",
+        "label": "Show article progress",
+        "description": "When enabled the user will see an article progress bar.",
+        "default": true,
+        "state": "new",
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "displaySummary",
+              "equals": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "showInteractionProgress",
+        "type": "boolean",
+        "label": "Show interactions progress",
+        "description": "When enabled the user will see an interaction progress bar.",
+        "default": true,
+        "state": "new",
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "displaySummary",
+              "equals": true
+            }
+          ]
+        }
       }
     ]
   },

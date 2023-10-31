@@ -259,6 +259,10 @@ class Summary extends H5P.EventDispatcher {
     circle.setAttribute('data-empty-fill', 'rgb(198, 220, 212)');
     circle.setAttribute('data-fill', JSON.stringify({ color: '#0e7c57' }));
 
+    if (!this.behaviour.showTotalScore) {
+      box.classList.add('display-none');
+    }
+
     return box;
   }
 
@@ -270,6 +274,11 @@ class Summary extends H5P.EventDispatcher {
     const box = this.createProgress(this.l10n.bookProgress, this.l10n.bookProgressSubtext, this.chapters.filter((chapter) => chapter.completed).length, this.chapters.length);
     box.classList.add('h5p-interactive-book-summary-progress-container');
     box.classList.add('h5p-interactive-book-summary-book-progress');
+
+    if (!this.behaviour.showArticleProgress) {
+      box.classList.add('display-none');
+    }
+
     return box;
   }
 
@@ -286,6 +295,11 @@ class Summary extends H5P.EventDispatcher {
     const box = this.createProgress(this.l10n.interactionsProgress, this.l10n.interactionsProgressSubtext, Math.max(totalInteractions - uncompletedInteractions, 0), totalInteractions);
     box.classList.add('h5p-interactive-book-summary-progress-container');
     box.classList.add('h5p-interactive-book-summary-interactions-progress');
+
+    if (!this.behaviour.showInteractionProgress) {
+      box.classList.add('display-none');
+    }
+
     return box;
   }
 
@@ -312,6 +326,15 @@ class Summary extends H5P.EventDispatcher {
   addActionButtons() {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-interactive-book-summary-buttons');
+
+    if (
+      this.behaviour.showTotalScore ||
+      this.behaviour.showArticleProgress ||
+      this.behaviour.showInteractionProgress
+    ) {
+      wrapper.classList.add('extra-margin-top');
+    }
+
     this.checkTheAnswerIsUpdated();
 
     if (this.parent.isSubmitButtonEnabled && this.parent.isAnswerUpdated) {
