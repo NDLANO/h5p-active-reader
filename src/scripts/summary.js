@@ -404,9 +404,13 @@ class Summary extends H5P.EventDispatcher {
       const sectionRowContainer = document.createElement('div');
       sectionRowContainer.classList.add('h5p-interactive-book-summary-overview-section-container');
       sectionRow.appendChild(sectionRowContainer);
+
       const isActiveReaderToggleEnabled =
-        section.instance.libraryInfo.machineName ===
-          'H5P.ActiveReaderTextInput' && section.instance.getResponse().trim();
+        (
+          ['H5P.ActiveReaderTextInput', 'H5P.KeywordSelector']
+            .includes(section.instance.libraryInfo.machineName) &&
+              section.instance.getResponse().trim()
+        );
 
       if (this.behaviour.progressIndicators) {
         const icon = document.createElement('span');
@@ -423,6 +427,7 @@ class Summary extends H5P.EventDispatcher {
       // Add class if isActiveReaderToggleEnabled
       isActiveReaderToggleEnabled &&
         titles[section.instance.subContentId].classList.add('toggle', 'hidden');
+
       titles[section.instance.subContentId].onclick = () => {
         if (isActiveReaderToggleEnabled) {
           // toggle hidden class on the chapter
@@ -432,6 +437,7 @@ class Summary extends H5P.EventDispatcher {
           titles[section.instance.subContentId].classList.toggle('hidden');
           return;
         }
+
         const newChapter = {
           h5pbookid: this.parent.contentId,
           chapter: `h5p-interactive-book-chapter-${chapterId}`,
