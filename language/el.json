@@ -58,6 +58,18 @@
         {
           "label": "Προβολή σύνοψης",
           "description": "Όταν είναι ενεργό, ο/η χρήστης μπορεί να δει μια σύνοψη και να καταχωρεί τις απαντήσεις/πρόοδό του/της"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

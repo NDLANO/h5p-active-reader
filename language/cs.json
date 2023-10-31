@@ -58,6 +58,18 @@
         {
           "label": "Zobrazit souhrn",
           "description": "Je-li tato možnost povolena, uživatel může zobrazit souhrn a odeslat postup / odpovědi"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

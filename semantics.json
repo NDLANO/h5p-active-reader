@@ -185,7 +185,6 @@
         "label": "Show total score progress",
         "description": "When enabled the user will see a total score progress bar.",
         "default": true,
-        "state": "new",
         "widget": "showWhen",
         "showWhen": {
           "rules": [
@@ -202,7 +201,6 @@
         "label": "Show article progress",
         "description": "When enabled the user will see an article progress bar.",
         "default": true,
-        "state": "new",
         "widget": "showWhen",
         "showWhen": {
           "rules": [
@@ -219,7 +217,6 @@
         "label": "Show interactions progress",
         "description": "When enabled the user will see an interaction progress bar.",
         "default": true,
-        "state": "new",
         "widget": "showWhen",
         "showWhen": {
           "rules": [

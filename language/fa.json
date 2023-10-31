@@ -58,6 +58,18 @@
         {
           "label": "نمایش جمع‌بندی",
           "description": "در صورت فعال‌سازی، کاربر می‌تواند جمع‌بندی را ببیند و پیشرفت/پاسخ‌ها را ارسال کند"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

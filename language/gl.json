@@ -58,6 +58,18 @@
         {
           "label": "Amosar resumo",
           "description": "Se está activado, o ususario pode ver un resumo e enviar o seu progreso ou respostas"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

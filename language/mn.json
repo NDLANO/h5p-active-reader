@@ -58,6 +58,18 @@
         {
           "label": "Үр дүнг харуулах",
           "description": "Идэвхжүүлсэн үед хэрэглэгч үр дүнг харж/илгээх боломжтой болно"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

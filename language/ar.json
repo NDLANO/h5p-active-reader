@@ -58,6 +58,18 @@
         {
           "label": "عرض الملخّص",
           "description": "عند تفعيل هذا الخيار سيتمكن المستخدم من رؤية الملخّص وإرسال التقدم/الإجابات"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

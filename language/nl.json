@@ -58,6 +58,18 @@
         {
           "label": "Toon samenvatting",
           "description": "Indien ingeschakeld, kan de gebruiker een samenvatting zien en de voortgang/antwoorden inzenden"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },

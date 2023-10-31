@@ -58,6 +58,18 @@
         {
           "label": "సమ్మరీ చూపించు",
           "description": "ఎనేబుల్ అయి ఉన్నపుడు యూజర్ సమ్మరీను చూడగలరు మరియు ప్రోగ్రెస్ /సమాధానాలను సమర్పించగలరు"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },
