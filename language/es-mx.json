@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Descripción de la portada",
-          "description": "Este texto será la descripción de su libro."
+          "description": "Este texto será la descripción de su libro.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Medio de portada",
@@ -129,6 +130,14 @@
     {
       "label": "Encabezado del resumen",
       "default": "Resumen"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Traducción para \"Todas las interacciones\"",

@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Описание на корицата",
-          "description": "Този текст ще бъде описанието на вашата книга."
+          "description": "Този текст ще бъде описанието на вашата книга.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "Summary header",
       "default": "Summary"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Translation for \"All interactions\"",

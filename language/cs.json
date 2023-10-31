@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Popis obálky",
-          "description": "Tento text bude popisem vaší knihy."
+          "description": "Tento text bude popisem vaší knihy.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Médium obálky",
@@ -129,6 +130,14 @@
     {
       "label": "Hlavička souhrnu",
       "default": "Souhrn"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Překlad pro \"Všechny interakce\"",

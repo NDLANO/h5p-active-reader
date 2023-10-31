@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Περιγραφή εξωφύλλου",
-          "description": "Αυτό το κείμενο θα είναι η περιγραφή του βιβλίου σας"
+          "description": "Αυτό το κείμενο θα είναι η περιγραφή του βιβλίου σας",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Μέσο Εξωφύλλου",
@@ -129,6 +130,14 @@
     {
       "label": "Κεφαλίδα περίληψης",
       "default": "Περίληψη"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Μετάφραση για το \"Όλες οι διαδράσεις\"",

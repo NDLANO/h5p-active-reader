@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Kapak açıklaması",
-          "description": "Bu metin kitabınızın açıklaması olacaktır."
+          "description": "Bu metin kitabınızın açıklaması olacaktır.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "Özet başlığı",
       "default": "Özet"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "\"Tüm Etkileşimler\" için çeviri",

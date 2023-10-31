@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Portadaren deskribapena",
-          "description": "Testu hau zure liburuaren deskribapena izango da."
+          "description": "Testu hau zure liburuaren deskribapena izango da.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Portadarako euskarria",
@@ -129,6 +130,14 @@
     {
       "label": "Laburpenaren goiburua",
       "default": "Laburpena"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "\"All interactions\" testuaren itzulpena",

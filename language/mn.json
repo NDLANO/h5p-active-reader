@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Хавтасны тайлбар",
-          "description": "Энэхүү текст нь номын тайлбар хэсэгт харагдах болно."
+          "description": "Энэхүү текст нь номын тайлбар хэсэгт харагдах болно.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Дунд зэргийн хамрах",
@@ -129,6 +130,14 @@
     {
       "label": "Тоймын гарчиг",
       "default": "Үр дүнгийн тойм"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "\"Нийт интеракшион\"-ын орчуулга",

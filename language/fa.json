@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "توصیف جلد",
-          "description": "این متن توصیف کتابتان خواهد بود."
+          "description": "این متن توصیف کتابتان خواهد بود.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "سرصفحه جمع‌بندی",
       "default": "جمع‌بندی"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "ترجمه همه تعاملات",

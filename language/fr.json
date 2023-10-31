@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Description de la couverture",
-          "description": "Ce texte sera la description de votre livre"
+          "description": "Ce texte sera la description de votre livre",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "Sommaire",
       "default": "Sommaire"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Intitulé pour \"Toutes les interactions\"",

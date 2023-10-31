@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Maelezo ya jalada",
-          "description": "Maandishi haya yatakuwa maelezo ya kitabu chako."
+          "description": "Maandishi haya yatakuwa maelezo ya kitabu chako.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Njia ya Jalada",
@@ -129,6 +130,14 @@
     {
       "label": "Kichwa cha muhtasari",
       "default": "Muhtasari"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Tafsiri kwa \"maingiliano yote\"",

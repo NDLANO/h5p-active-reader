@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Tiitellehe kirjeldus",
-          "description": "See tekst kirjeldab sinu raamatut."
+          "description": "See tekst kirjeldab sinu raamatut.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "Summary header",
       "default": "Kokkuvõte"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Translation for \"All interactions\"",

@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Alaotsikko",
-          "description": "Tämä teksti näkyy pienemmässä koossa pääotsikon alapuolella."
+          "description": "Tämä teksti näkyy pienemmässä koossa pääotsikon alapuolella.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "Yhteenveto-sivun otsikko",
       "default": "Yhteenveto"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "\"Kaikki tehtävät\" -pudotusvalikkotekstin käännös",

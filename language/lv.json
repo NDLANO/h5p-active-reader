@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Vāka apraksts",
-          "description": "Šis teksts būs jūsu grāmatas apraksts."
+          "description": "Šis teksts būs jūsu grāmatas apraksts.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Vāka multivide",
@@ -129,6 +130,14 @@
     {
       "label": "Kopsavilkuma galvene",
       "default": "Kopsavilkums"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "\"Visas mijiedarbības\" tulkojums",

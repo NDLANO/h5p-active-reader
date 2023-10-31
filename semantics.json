@@ -337,6 +337,24 @@
     "optional": true
   },
   {
+    "name": "showDetails",
+    "type": "text",
+    "importance": "low",
+    "label": "Translation for \"Show details\"",
+    "default": "Show details",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "hideDetails",
+    "type": "text",
+    "importance": "low",
+    "label": "Translation for \"Hide details\"",
+    "default": "Hide details",
+    "common": true,
+    "optional": true
+  },
+  {
     "name": "allInteractions",
     "type": "text",
     "importance": "low",

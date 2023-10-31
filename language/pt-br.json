@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Descrição da capa",
-          "description": "Texto que será exibido como descrição do livro."
+          "description": "Texto que será exibido como descrição do livro.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Capa média",
@@ -129,6 +130,14 @@
     {
       "label": "Cabeçalho do resumo",
       "default": "Resumo"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Tradução para \"Todas as interações\"",

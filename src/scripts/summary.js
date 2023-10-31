@@ -557,6 +557,45 @@ class Summary extends H5P.EventDispatcher {
     return wrapper;
   }
 
+  createToggleAllDetails() {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('h5p-interactive-book-summary-toggle-all-details-wrapper');
+
+    const button = document.createElement('button');
+    button.classList.add('h5p-interactive-book-summary-toggle-all-details-button');
+    button.type = 'button';
+    button.textContent = this.l10n.showDetails;
+    button.addEventListener('click', (event) => {
+      const sectionTitles = this.wrapper.querySelectorAll(
+        '.h5p-interactive-book-summary-section-title.toggle'
+      );
+
+      this.isShowingDetails = !this.isShowingDetails;
+      if (this.isShowingDetails) {
+        button.textContent = this.l10n.hideDetails;
+
+        sectionTitles.forEach((title) => {
+          if (title.classList.contains('hidden')) {
+            title.click();
+          }
+        });
+      }
+      else {
+        button.textContent = this.l10n.showDetails;
+
+        sectionTitles.forEach((title) => {
+          if (!title.classList.contains('hidden')) {
+            title.click();
+          }
+        });
+      }
+    });
+
+    wrapper.append(button);
+
+    return wrapper;
+  }
+
   /**
    * Create the dropdown menu to filter sections by interactions
    * @returns {HTMLDivElement} Filter dropdown.
@@ -632,10 +671,12 @@ class Summary extends H5P.EventDispatcher {
     const summaryHeader = document.createElement('li');
     summaryHeader.classList.add('h5p-interactive-book-summary-overview-header');
 
-    const header = document.createElement('h3');
+    const header = document.createElement('div');
+    header.classList.add('h3');
     header.innerHTML = this.l10n.summaryHeader;
 
     summaryHeader.appendChild(header);
+    summaryHeader.appendChild(this.createToggleAllDetails());
     summaryHeader.appendChild(this.createFilterDropdown());
 
     wrapper.appendChild(summaryHeader);

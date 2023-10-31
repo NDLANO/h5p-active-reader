@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Omslagets beskrivning",
-          "description": "Denna text beskriver din bok."
+          "description": "Denna text beskriver din bok.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "Rubrik för sammanfattning",
       "default": "Sammanfattning"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Översättning för \"Alla interaktiva övningar\"",

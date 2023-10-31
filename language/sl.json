@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Opis naslovne strani",
-          "description": "Besedilo opisuje vsebino knjige."
+          "description": "Besedilo opisuje vsebino knjige.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Medij naslovne strani",
@@ -129,6 +130,14 @@
     {
       "label": "Naslov strani s povzetkom",
       "default": "Povzetek"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Besedilo za \"Vse interakcije\"",

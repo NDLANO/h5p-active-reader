@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Omslagbeschrijving",
-          "description": "Deze tekst wordt de beschrijving van je boek."
+          "description": "Deze tekst wordt de beschrijving van je boek.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Kaft medium",
@@ -129,6 +130,14 @@
     {
       "label": "Titel van samenvatting",
       "default": "Samenvatting"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Vertaling voor \"Alle interacties\"",

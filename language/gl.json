@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Descrición da cuberta",
-          "description": "Este texto será a descrición do teu libro."
+          "description": "Este texto será a descrición do teu libro.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cuberta mediana",
@@ -129,6 +130,14 @@
     {
       "label": "Cabeceira do resumo",
       "default": "Resumo"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Tradución para \"Todas as interaccións\"",

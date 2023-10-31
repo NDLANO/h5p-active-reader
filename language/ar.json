@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "وصف الغلاف",
-          "description": "هذا النص سيكون وصف كتابك."
+          "description": "هذا النص سيكون وصف كتابك.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "غلاف متوسط",
@@ -129,6 +130,14 @@
     {
       "label": "عنوان الملخّص",
       "default": "الملخّص"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "ترجمة \"جميع التفاعلات\"",

@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Назва книги",
-          "description": "Цей тескт містить опис книги."
+          "description": "Цей тескт містить опис книги.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Медіа обкладинки",
@@ -129,6 +130,14 @@
     {
       "label": "Заголовок сорінки Підсумок курсу",
       "default": "Підсумок курсу"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Переклад для \"Всього завдань переглянуто\"",

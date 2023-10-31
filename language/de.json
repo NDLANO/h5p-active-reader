@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Beschreibung",
-          "description": "Dieser Text wird zur Beschreibung des Buchs unter dem eigentlichen Titel angezeigt."
+          "description": "Dieser Text wird zur Beschreibung des Buchs unter dem eigentlichen Titel angezeigt.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Medium für die Titelseite",
@@ -129,6 +130,14 @@
     {
       "label": "Titel für die Zusammenfassung",
       "default": "Zusammenfassung"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Übersetzung für \"Alle Interaktionen\"",

@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "커버 설명",
-          "description": "이 텍스트는 당신의 책에 대한 설명이 될 겁니다."
+          "description": "이 텍스트는 당신의 책에 대한 설명이 될 겁니다.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -129,6 +130,14 @@
     {
       "label": "요약 머릿말",
       "default": "요약"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "\"All interactions\"(모든 상호작용)에 대한 맞춤형 텍스트",
