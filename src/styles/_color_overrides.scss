@@ -313,13 +313,26 @@ button {
     background-color: var(--color-base-5, rgba(26,115,217,.05));
     color: var(--color-base-85, #1356a3);
 
-    &:hover {
-      background-color: var(--color-base-10, rgba(26,115,217,.1));
+    &:not([disabled="disabled"]) {
+      &:hover {
+        background-color: var(--color-base-10, rgba(26,115,217,.1));
+      }
+
+      &[aria-checked="true"] {
+        background-color: var(--color-base, #1a73d9);
+        color: var(--color-text, #fff);
+      }
     }
 
-    &[aria-checked="true"] {
-      background-color: var(--color-base, #1a73d9);
-      color: var(--color-text, #fff);
+    &[disabled="disabled"] {
+      background-color: var(--color-base,rgba(180, 180, 180, 0.95));
+      color: var(--color-text, #000);
+      cursor: unset;
+
+      &[aria-checked="true"] {
+        background-color: var(--color-base,rgba(96, 96, 96, 0.95));
+        color: var(--color-text, #fff);
+      }
     }
   }
 }
