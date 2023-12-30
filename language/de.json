@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Beschreibung",
-          "description": "Dieser Text wird zur Beschreibung des Buchs unter dem eigentlichen Titel angezeigt."
+          "description": "Dieser Text wird zur Beschreibung des Buchs unter dem eigentlichen Titel angezeigt.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Medium für die Titelseite",
@@ -57,6 +58,18 @@
         {
           "label": "Zusammenfassung anzeigen",
           "description": "Wenn gewählt, können die Nutzenden eine Zusammenfassung sehen und ihren Fortschritt/ihre Antworten einsenden."
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },
@@ -129,6 +142,14 @@
     {
       "label": "Titel für die Zusammenfassung",
       "default": "Zusammenfassung"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Übersetzung für \"Alle Interaktionen\"",

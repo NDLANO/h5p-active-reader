@@ -259,6 +259,10 @@ class Summary extends H5P.EventDispatcher {
     circle.setAttribute('data-empty-fill', 'rgb(198, 220, 212)');
     circle.setAttribute('data-fill', JSON.stringify({ color: '#0e7c57' }));
 
+    if (!this.behaviour.showTotalScore) {
+      box.classList.add('display-none');
+    }
+
     return box;
   }
 
@@ -270,6 +274,11 @@ class Summary extends H5P.EventDispatcher {
     const box = this.createProgress(this.l10n.bookProgress, this.l10n.bookProgressSubtext, this.chapters.filter((chapter) => chapter.completed).length, this.chapters.length);
     box.classList.add('h5p-interactive-book-summary-progress-container');
     box.classList.add('h5p-interactive-book-summary-book-progress');
+
+    if (!this.behaviour.showArticleProgress) {
+      box.classList.add('display-none');
+    }
+
     return box;
   }
 
@@ -286,6 +295,11 @@ class Summary extends H5P.EventDispatcher {
     const box = this.createProgress(this.l10n.interactionsProgress, this.l10n.interactionsProgressSubtext, Math.max(totalInteractions - uncompletedInteractions, 0), totalInteractions);
     box.classList.add('h5p-interactive-book-summary-progress-container');
     box.classList.add('h5p-interactive-book-summary-interactions-progress');
+
+    if (!this.behaviour.showInteractionProgress) {
+      box.classList.add('display-none');
+    }
+
     return box;
   }
 
@@ -312,6 +326,15 @@ class Summary extends H5P.EventDispatcher {
   addActionButtons() {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-interactive-book-summary-buttons');
+
+    if (
+      this.behaviour.showTotalScore ||
+      this.behaviour.showArticleProgress ||
+      this.behaviour.showInteractionProgress
+    ) {
+      wrapper.classList.add('extra-margin-top');
+    }
+
     this.checkTheAnswerIsUpdated();
 
     if (this.parent.isSubmitButtonEnabled && this.parent.isAnswerUpdated) {
@@ -404,9 +427,13 @@ class Summary extends H5P.EventDispatcher {
       const sectionRowContainer = document.createElement('div');
       sectionRowContainer.classList.add('h5p-interactive-book-summary-overview-section-container');
       sectionRow.appendChild(sectionRowContainer);
+
       const isActiveReaderToggleEnabled =
-        section.instance.libraryInfo.machineName ===
-          'H5P.ActiveReaderTextInput' && section.instance.getResponse().trim();
+        (
+          ['H5P.ActiveReaderTextInput', 'H5P.KeywordSelector']
+            .includes(section.instance.libraryInfo.machineName) &&
+              section.instance.getResponse().trim()
+        );
 
       if (this.behaviour.progressIndicators) {
         const icon = document.createElement('span');
@@ -423,6 +450,7 @@ class Summary extends H5P.EventDispatcher {
       // Add class if isActiveReaderToggleEnabled
       isActiveReaderToggleEnabled &&
         titles[section.instance.subContentId].classList.add('toggle', 'hidden');
+
       titles[section.instance.subContentId].onclick = () => {
         if (isActiveReaderToggleEnabled) {
           // toggle hidden class on the chapter
@@ -432,6 +460,7 @@ class Summary extends H5P.EventDispatcher {
           titles[section.instance.subContentId].classList.toggle('hidden');
           return;
         }
+
         const newChapter = {
           h5pbookid: this.parent.contentId,
           chapter: `h5p-interactive-book-chapter-${chapterId}`,
@@ -557,6 +586,45 @@ class Summary extends H5P.EventDispatcher {
     return wrapper;
   }
 
+  createToggleAllDetails() {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('h5p-interactive-book-summary-toggle-all-details-wrapper');
+
+    const button = document.createElement('button');
+    button.classList.add('h5p-interactive-book-summary-toggle-all-details-button');
+    button.type = 'button';
+    button.textContent = this.l10n.showDetails;
+    button.addEventListener('click', (event) => {
+      const sectionTitles = this.wrapper.querySelectorAll(
+        '.h5p-interactive-book-summary-section-title.toggle'
+      );
+
+      this.isShowingDetails = !this.isShowingDetails;
+      if (this.isShowingDetails) {
+        button.textContent = this.l10n.hideDetails;
+
+        sectionTitles.forEach((title) => {
+          if (title.classList.contains('hidden')) {
+            title.click();
+          }
+        });
+      }
+      else {
+        button.textContent = this.l10n.showDetails;
+
+        sectionTitles.forEach((title) => {
+          if (!title.classList.contains('hidden')) {
+            title.click();
+          }
+        });
+      }
+    });
+
+    wrapper.append(button);
+
+    return wrapper;
+  }
+
   /**
    * Create the dropdown menu to filter sections by interactions
    * @returns {HTMLDivElement} Filter dropdown.
@@ -632,10 +700,12 @@ class Summary extends H5P.EventDispatcher {
     const summaryHeader = document.createElement('li');
     summaryHeader.classList.add('h5p-interactive-book-summary-overview-header');
 
-    const header = document.createElement('h3');
+    const header = document.createElement('div');
+    header.classList.add('h3');
     header.innerHTML = this.l10n.summaryHeader;
 
     summaryHeader.appendChild(header);
+    summaryHeader.appendChild(this.createToggleAllDetails());
     summaryHeader.appendChild(this.createFilterDropdown());
 
     wrapper.appendChild(summaryHeader);

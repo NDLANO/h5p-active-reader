@@ -138,19 +138,19 @@
   }
 
   .h5p-interactive-box-summary-progress {
-    display: flex;
-    justify-content: space-between;
     color: #273C59;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
 
     .h5p-interactive-book-summary-progress-container {
-      background-color: transparentize(#dbdbdb, 0.7);
-      width: 49%;
-      padding: 1rem;
-      box-sizing: border-box;
-      border-radius: 5px;
-      display: flex;
       align-items: center;
-      margin-right: 1em;
+      background-color: transparentize(#dbdbdb, 0.7);
+      border-radius: 5px;
+      box-sizing: border-box;
+      display: flex;
+      padding: 1rem;
+      width: 100%;
 
       .absolute-value {
         color: #273C59;
@@ -166,6 +166,10 @@
 
       &:last-child {
         margin-right: 0;
+      }
+
+      &.display-none {
+        display: none;
       }
     }
 
@@ -193,7 +197,10 @@
   }
 
   .h5p-interactive-book-summary-buttons {
-    margin-top: 1rem;
+    &.extra-margin-top {
+      margin-top: 1rem;
+    }
+
     flex-wrap: wrap;
 
     .h5p-interactive-book-summary-button {
@@ -290,9 +297,93 @@
   }
 
   .h5p-interactive-book-summary-overview-header {
-    display: flex;
     align-items: center;
+    display: flex;
+    gap: 0.5rem;
     justify-content: space-between;
+    padding: 1em 0;;
+
+    .h3 {
+      font-size: 1.17em;
+      font-weight: bold;
+      line-height: 1.5em;
+      flex-grow: 1;
+    }
+
+    .h5p-interactive-book-summary-toggle-all-details-wrapper {
+      .h5p-interactive-book-summary-toggle-all-details-button {
+        background-color: #ffffff;
+        border: 1px solid #e8e8e8;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        padding: 0.5rem 0.6875rem;
+
+        &:active {
+          background-color: #fafafa;
+        }
+      }
+    }
+
+    .h5p-interactive-book-summary-dropdown {
+      position: relative;
+      max-width: 200px;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      background-color: #ffffff;
+      margin-left: auto 0.0625rem auto auto;
+      font-size: 0.875rem;
+      min-width: 12rem;
+
+      & > button {
+        cursor: pointer;
+      }
+
+      &[active]{
+
+        .h5p-interactive-book-summary-dropdown-menu {
+          display: block;
+          box-shadow: 0 2px 3px 2px rgba(0,0,0,0.1);
+
+          button {
+            background-color: #ffffff;
+          }
+        }
+
+        button {
+          background-color: #fafafa;
+          cursor: pointer;
+          text-align: left;
+        }
+
+      }
+
+      .h5p-interactive-book-summary-dropdown-menu {
+        position: absolute;
+        list-style: none;
+        display: none;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: inherit;
+      }
+
+      button {
+        display: flex;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        align-items: center;
+        font-size: inherit;
+        padding: 0.5rem 0.6875rem;
+
+        .icon-expanded {
+          margin-left: auto;
+          font-size: 0.5rem;
+        }
+      }
+    }
 
     select {
       margin: auto 0 auto auto;
@@ -334,6 +425,7 @@
       span[class*=' icon-'] {
         margin-left: auto;
         color: var(--color-contrast, #2d7ad2);
+        font-size: 1.75rem;
         font-weight: 100;
         cursor: pointer;
       }
@@ -511,65 +603,5 @@
 
   button {
     flex: auto;
-  }
-}
-
-.h5p-interactive-book-summary-dropdown {
-  position: relative;
-  max-width: 200px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  background-color: #ffffff;
-  margin-left: auto 0.0625rem auto auto;
-  font-size: 0.875rem;
-  min-width: 12rem;
-
-  & > button {
-    cursor: pointer;
-  }
-
-  &[active]{
-
-    .h5p-interactive-book-summary-dropdown-menu {
-      display: block;
-      box-shadow: 0 2px 3px 2px rgba(0,0,0,0.1);
-
-      button {
-        background-color: #ffffff;
-      }
-    }
-
-    button {
-      background-color: #fafafa;
-      cursor: pointer;
-      text-align: left;
-    }
-
-  }
-
-  .h5p-interactive-book-summary-dropdown-menu {
-    position: absolute;
-    list-style: none;
-    display: none;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    cursor: pointer;
-    background-color: inherit;
-  }
-
-  button {
-    display: flex;
-    width: 100%;
-    border: 0;
-    background: transparent;
-    align-items: center;
-    font-size: inherit;
-    padding: 0.5rem 0.6875rem;
-
-    .icon-expanded {
-      margin-left: auto;
-      font-size: 0.5rem;
-    }
   }
 }

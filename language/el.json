@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Περιγραφή εξωφύλλου",
-          "description": "Αυτό το κείμενο θα είναι η περιγραφή του βιβλίου σας"
+          "description": "Αυτό το κείμενο θα είναι η περιγραφή του βιβλίου σας",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Μέσο Εξωφύλλου",
@@ -57,6 +58,18 @@
         {
           "label": "Προβολή σύνοψης",
           "description": "Όταν είναι ενεργό, ο/η χρήστης μπορεί να δει μια σύνοψη και να καταχωρεί τις απαντήσεις/πρόοδό του/της"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },
@@ -129,6 +142,14 @@
     {
       "label": "Κεφαλίδα περίληψης",
       "default": "Περίληψη"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Μετάφραση για το \"Όλες οι διαδράσεις\"",

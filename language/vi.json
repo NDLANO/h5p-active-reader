@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Mô tả bìa",
-          "description": "Văn bản này sẽ là mô tả của cuốn sách của bạn."
+          "description": "Văn bản này sẽ là mô tả của cuốn sách của bạn.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Che trung bình",
@@ -57,6 +58,18 @@
         {
           "label": "Hiển thị tóm tắt",
           "description": "Khi được bật, người dùng có thể xem tóm tắt và gửi tiến trình / câu trả lời"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },
@@ -129,6 +142,14 @@
     {
       "label": "Summary header",
       "default": "Summary"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Translation for \"All interactions\"",

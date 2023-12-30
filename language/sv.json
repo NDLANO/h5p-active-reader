@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Omslagets beskrivning",
-          "description": "Denna text beskriver din bok."
+          "description": "Denna text beskriver din bok.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -57,6 +58,18 @@
         {
           "label": "Visa sammanfattning",
           "description": "När aktiverat så kan användaren se en sammanfattning och skicka in sina framsteg/ svar."
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },
@@ -129,6 +142,14 @@
     {
       "label": "Rubrik för sammanfattning",
       "default": "Sammanfattning"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Översättning för \"Alla interaktiva övningar\"",

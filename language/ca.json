@@ -9,7 +9,8 @@
       "fields": [
         {
           "label": "Descripció de la portada",
-          "description": "Aquest text serà la descripció del llibre."
+          "description": "Aquest text serà la descripció del llibre.",
+          "default": "<p style=\"text-align: center;\"></p>"
         },
         {
           "label": "Cover medium",
@@ -57,6 +58,18 @@
         {
           "label": "Mostra el resum",
           "description": "Si aquesta opció està activada, l’usuari podrà veure un resum i enviar el progrés i les respostes"
+        },
+        {
+          "label": "Show total score progress",
+          "description": "When enabled the user will see a total score progress bar."
+        },
+        {
+          "label": "Show article progress",
+          "description": "When enabled the user will see an article progress bar."
+        },
+        {
+          "label": "Show interactions progress",
+          "description": "When enabled the user will see an interaction progress bar."
         }
       ]
     },
@@ -129,6 +142,14 @@
     {
       "label": "Capçalera del resum",
       "default": "Resum"
+    },
+    {
+      "label": "Translation for \"Show details\"",
+      "default": "Show details"
+    },
+    {
+      "label": "Translation for \"Hide details\"",
+      "default": "Hide details"
     },
     {
       "label": "Traducció de «Totes les interaccions»",

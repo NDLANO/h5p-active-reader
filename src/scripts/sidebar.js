@@ -478,26 +478,23 @@ class SideBar extends H5P.EventDispatcher {
     sectionsWrapper.id = sectionsDivId;
 
     const sectionLinks = [];
-    // Add sections to the chapter
+    // Add sections to chapter: If is text, only add if there are headers
     for (let i = 0; i < this.chapters[chapterId].sections.length; i++) {
-      // Non-tasks will only get section links if they have headers
-      if (!this.parent.chapters[chapterId].sections[i].isTask) {
+      const chapterParams = this.parent.params.chapters[chapterId];
+      const sectionParams = chapterParams.params.content[i].content;
+      const isText = sectionParams.library.split(' ')[0] === 'H5P.AdvancedText';
 
-        // Check text content for headers
-        const chapterParams = this.parent.params.chapters[chapterId];
-        const sectionParams = chapterParams.params.content[i].content;
-        const isText = sectionParams.library.split(' ')[0] === 'H5P.AdvancedText';
-
-        if (isText) {
-          const text = document.createElement('div');
-          text.innerHTML = sectionParams.params.text;
-          const headers = text.querySelectorAll('h2, h3');
-          for (let j = 0; j < headers.length; j++) {
-            const header = headers[j];
-            const sectionNode = this.createSectionLink(chapterId, i, header.textContent, j);
-            sectionLinks.push(sectionNode);
-            sectionsWrapper.appendChild(sectionNode);
-          }
+      if (isText) {
+        const text = document.createElement('div');
+        text.innerHTML = sectionParams.params.text;
+        const headers = text.querySelectorAll('h2, h3');
+        for (let j = 0; j < headers.length; j++) {
+          const header = headers[j];
+          const sectionNode = this.createSectionLink(
+            chapterId, i, header.textContent, j
+          );
+          sectionLinks.push(sectionNode);
+          sectionsWrapper.appendChild(sectionNode);
         }
       }
       else {

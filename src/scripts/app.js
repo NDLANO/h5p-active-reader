@@ -975,6 +975,8 @@ export default class ActiveReader extends H5P.EventDispatcher {
       submitReport = 'Submit Report',
       restartLabel = 'Restart',
       summaryHeader = 'Summary',
+      showDetails = 'Show details',
+      hideDetails = 'Hide details',
       allInteractions = 'All interactions',
       unansweredInteractions = 'Unanswered interactions',
       scoreText = '@score / @maxscore',
@@ -999,6 +1001,9 @@ export default class ActiveReader extends H5P.EventDispatcher {
       .filter((chapter) => chapter.params.content && chapter.params.content.length > 0);
 
     config.behaviour.displaySummary = config.behaviour.displaySummary === undefined || config.behaviour.displaySummary;
+    config.behaviour.showTotalScore = config.behaviour.displaySummary && (config.behaviour.showTotalScore ?? true);
+    config.behaviour.showArticleProgress = config.behaviour.displaySummary && (config.behaviour.showArticleProgress ?? true);
+    config.behaviour.showInteractionProgress = config.behaviour.displaySummary && (config.behaviour.showInteractionProgress ?? true);
 
     config.l10n = {
       read,
@@ -1018,6 +1023,8 @@ export default class ActiveReader extends H5P.EventDispatcher {
       submitReport,
       restartLabel,
       summaryHeader,
+      showDetails,
+      hideDetails,
       allInteractions,
       unansweredInteractions,
       scoreText,

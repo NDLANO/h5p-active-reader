@@ -99,7 +99,7 @@
           "name": "chapter",
           "type": "library",
           "options": [
-            "H5P.ActiveReaderChapter 1.1"
+            "H5P.ActiveReaderChapter 1.2"
           ]
         }
       ]
@@ -178,6 +178,54 @@
         "label": "Display summary",
         "description": "When enabled the user can see a summary and submit the progress/answers",
         "default": true
+      },
+      {
+        "name": "showTotalScore",
+        "type": "boolean",
+        "label": "Show total score progress",
+        "description": "When enabled the user will see a total score progress bar.",
+        "default": true,
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "displaySummary",
+              "equals": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "showArticleProgress",
+        "type": "boolean",
+        "label": "Show article progress",
+        "description": "When enabled the user will see an article progress bar.",
+        "default": true,
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "displaySummary",
+              "equals": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "showInteractionProgress",
+        "type": "boolean",
+        "label": "Show interactions progress",
+        "description": "When enabled the user will see an interaction progress bar.",
+        "default": true,
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "displaySummary",
+              "equals": true
+            }
+          ]
+        }
       }
     ]
   },
@@ -333,6 +381,24 @@
     "importance": "low",
     "label": "Summary header",
     "default": "Summary",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "showDetails",
+    "type": "text",
+    "importance": "low",
+    "label": "Translation for \"Show details\"",
+    "default": "Show details",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "hideDetails",
+    "type": "text",
+    "importance": "low",
+    "label": "Translation for \"Hide details\"",
+    "default": "Hide details",
     "common": true,
     "optional": true
   },
