@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "وصف الغلاف",
-          "description": "هذا النص سيكون وصف كتابك.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "هذا النص سيكون وصف كتابك."
         },
         {
           "label": "غلاف متوسط",

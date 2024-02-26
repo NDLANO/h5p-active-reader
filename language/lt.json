@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Viršelio aprašymas",
-          "description": "Šis tekstas bus jūsų knygos aprašymas.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Šis tekstas bus jūsų knygos aprašymas."
         },
         {
           "label": "Viršelio nustatymai",

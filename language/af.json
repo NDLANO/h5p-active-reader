@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Voorblad beskrywing",
-          "description": "Hierdie teks sal die beskrywing van jou boek wees.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Hierdie teks sal die beskrywing van jou boek wees."
         },
         {
           "label": "Cover medium",

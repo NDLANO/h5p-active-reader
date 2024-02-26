@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "توصیف جلد",
-          "description": "این متن توصیف کتابتان خواهد بود.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "این متن توصیف کتابتان خواهد بود."
         },
         {
           "label": "Cover medium",

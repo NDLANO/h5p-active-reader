@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Alaotsikko",
-          "description": "Tämä teksti näkyy pienemmässä koossa pääotsikon alapuolella.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Tämä teksti näkyy pienemmässä koossa pääotsikon alapuolella."
         },
         {
           "label": "Cover medium",

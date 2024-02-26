@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Название книги",
-          "description": "Этот текст содержит описание книги.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Этот текст содержит описание книги."
         },
         {
           "label": "Cover medium",

@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Descrição da capa",
-          "description": "Texto que será exibido como descrição do livro.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Texto que será exibido como descrição do livro."
         },
         {
           "label": "Meio de cobertura",

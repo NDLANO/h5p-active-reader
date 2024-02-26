@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Descrizione della copertina",
-          "description": "Questo testo descriverà il tuo libro.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Questo testo descriverà il tuo libro."
         },
         {
           "label": "Cover medium",

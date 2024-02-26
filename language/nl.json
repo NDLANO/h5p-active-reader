@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Omslagbeschrijving",
-          "description": "Deze tekst wordt de beschrijving van je boek.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Deze tekst wordt de beschrijving van je boek."
         },
         {
           "label": "Kaft medium",

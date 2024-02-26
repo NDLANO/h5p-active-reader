@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Kapak açıklaması",
-          "description": "Bu metin kitabınızın açıklaması olacaktır.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Bu metin kitabınızın açıklaması olacaktır."
         },
         {
           "label": "Cover medium",

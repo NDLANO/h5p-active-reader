@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Tiitellehe kirjeldus",
-          "description": "See tekst kirjeldab sinu raamatut.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "See tekst kirjeldab sinu raamatut."
         },
         {
           "label": "Cover medium",

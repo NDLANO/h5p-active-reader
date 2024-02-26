@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Descrición da cuberta",
-          "description": "Este texto será a descrición do teu libro.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Este texto será a descrición do teu libro."
         },
         {
           "label": "Cuberta mediana",

@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Descripción de la portada",
-          "description": "Este texto será la descripción de su libro.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Este texto será la descripción de su libro."
         },
         {
           "label": "Medio de portada",

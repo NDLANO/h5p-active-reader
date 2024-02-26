@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Portadaren deskribapena",
-          "description": "Testu hau zure liburuaren deskribapena izango da.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Testu hau zure liburuaren deskribapena izango da."
         },
         {
           "label": "Portadarako euskarria",

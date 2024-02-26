@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Maelezo ya jalada",
-          "description": "Maandishi haya yatakuwa maelezo ya kitabu chako.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Maandishi haya yatakuwa maelezo ya kitabu chako."
         },
         {
           "label": "Njia ya Jalada",

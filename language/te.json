@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "కవర్ /ముఖచిత్రం వివరణ",
-          "description": "ఈ టెక్స్ట్ మీ పుస్తకం యొక్క వివరణ.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "ఈ టెక్స్ట్ మీ పుస్తకం యొక్క వివరణ."
         },
         {
           "label": "కవర్ మీడియం",

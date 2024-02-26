@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Vāka apraksts",
-          "description": "Šis teksts būs jūsu grāmatas apraksts.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Šis teksts būs jūsu grāmatas apraksts."
         },
         {
           "label": "Vāka multivide",

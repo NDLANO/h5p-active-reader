@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Opis naslovne strani",
-          "description": "Besedilo opisuje vsebino knjige.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Besedilo opisuje vsebino knjige."
         },
         {
           "label": "Medij naslovne strani",

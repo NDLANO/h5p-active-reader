@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Описание на корицата",
-          "description": "Този текст ще бъде описанието на вашата книга.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Този текст ще бъде описанието на вашата книга."
         },
         {
           "label": "Cover medium",

@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Mô tả bìa",
-          "description": "Văn bản này sẽ là mô tả của cuốn sách của bạn.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Văn bản này sẽ là mô tả của cuốn sách của bạn."
         },
         {
           "label": "Che trung bình",

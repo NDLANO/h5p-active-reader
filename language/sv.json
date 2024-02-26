@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Omslagets beskrivning",
-          "description": "Denna text beskriver din bok.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Denna text beskriver din bok."
         },
         {
           "label": "Cover medium",

@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Назва книги",
-          "description": "Цей тескт містить опис книги.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Цей тескт містить опис книги."
         },
         {
           "label": "Медіа обкладинки",

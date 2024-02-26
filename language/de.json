@@ -9,8 +9,7 @@
       "fields": [
         {
           "label": "Beschreibung",
-          "description": "Dieser Text wird zur Beschreibung des Buchs unter dem eigentlichen Titel angezeigt.",
-          "default": "<p style=\"text-align: center;\"></p>"
+          "description": "Dieser Text wird zur Beschreibung des Buchs unter dem eigentlichen Titel angezeigt."
         },
         {
           "label": "Medium für die Titelseite",
