@@ -2,7 +2,7 @@
   "title": "Active Reader",
   "description": "An active reader which displays content in pages and sections",
   "majorVersion": 1,
-  "minorVersion": 2,
+  "minorVersion": 3,
   "patchVersion": 0,
   "runnable": 1,
   "fullscreen": 1,
