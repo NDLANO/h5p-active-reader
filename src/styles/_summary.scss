@@ -197,11 +197,11 @@
   }
 
   .h5p-interactive-book-summary-buttons {
+    flex-wrap: wrap;
+
     &.extra-margin-top {
       margin-top: 1rem;
     }
-
-    flex-wrap: wrap;
 
     .h5p-interactive-book-summary-button {
       border-radius: 4px;
