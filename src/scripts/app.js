@@ -279,7 +279,7 @@ export default class ActiveReader extends H5P.EventDispatcher {
     /**
      * Check if the configs are set to use summary
      * @param {object[]} chapters Chapters.
-     * @returns {*|boolean} True, if should have summary.
+     * @returns {boolean} True, if should have summary.
      */
     this.hasSummary = (chapters = this.chapters ) => this.hasChaptersTasks(chapters) && this.params.behaviour.displaySummary && this.params.behaviour.displaySummary === true;
 
