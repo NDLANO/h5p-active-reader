@@ -1,3 +1,5 @@
+@use 'variables' as var;
+
 .h5p-interactive-book-chapter {
   display: none;
   left: 0;
@@ -60,7 +62,7 @@
 
 .h5p-interactive-book-status-progress-marker {
   align-items: center;
-  border-top: 1px solid $cool-grey;
+  border-top: 1px solid var.$cool-grey;
   display: flex;
   padding: 1em 0 0 1em;
   clear: both;
@@ -74,7 +76,7 @@
   }
 
   p {
-    color: $mud;
+    color: var.$mud;
     font-weight: bold;
     margin: 0;
     padding-left: 1em;

@@ -1,26 +1,9 @@
-
-$background-color: #fff;
-$base-color: #1768C4;
-$base-color-5: rgba($base-color, .05);
-$base-color-10: rgba($base-color, .1);
-$base-color-20: rgba($base-color, .2);
-$base-color-50: rgba($base-color, .5);
-$base-color-90: rgba($base-color, .9);
-$base-color-95: rgba($base-color, .95);
-$black: #000;
-$black-20: rgba(0, 0, 0, .2);
-$cool-grey: #eee;
-$dark-grey-20: rgba(166, 166, 166, .2);
-$ghost-white: #e9e4ed;
-$light-grey: #bebebe;
-$medium-grey: #363636;
-$scrollbar: #6C7992;
-$scrollbar-30: rgba($scrollbar, .35);
-$scrollbar-75: rgba($scrollbar, .75);
-$mud: #4c4452;
-$mud-80: rgba($mud, .8);
-
-$fullscreen-button-size: 1.8em;
+@use 'variables' as var;
+@use 'pagecontent';
+@use 'statusbar';
+@use 'navigationbar';
+@use 'cover';
+@use "summary";
 
 .h5p-interactive-book {
   &.h5p-interactive-book-small {
@@ -43,10 +26,10 @@ $fullscreen-button-size: 1.8em;
         }
 
         .h5p-interactive-book-navigation-chapter-button {
-          background-color: $background-color;
+          background-color: var.$background-color;
 
           &.h5p-interactive-book-navigation-current {
-            border-bottom: solid 1px $ghost-white;
+            border-bottom: solid 1px var.$ghost-white;
           }
         }
 
@@ -79,7 +62,7 @@ $fullscreen-button-size: 1.8em;
   }
 
   &.h5p-fullscreen {
-    background-color: $background-color;
+    background-color: var.$background-color;
   }
 
   .h5p-content-controls {
@@ -88,16 +71,16 @@ $fullscreen-button-size: 1.8em;
 
   ::-webkit-scrollbar {
     width: 6px;
-    background: $scrollbar-30;
+    background: var.$scrollbar-30;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: $scrollbar-75;
+    background: var.$scrollbar-75;
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: $scrollbar;
+    background: var.$scrollbar;
   }
 }
 
@@ -168,9 +151,3 @@ $fullscreen-button-size: 1.8em;
     }
   }
 }
-
-@import 'pagecontent';
-@import 'statusbar';
-@import 'navigationbar';
-@import 'cover';
-@import "summary";

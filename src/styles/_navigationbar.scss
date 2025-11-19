@@ -1,7 +1,9 @@
+@use 'variables' as var;
+
 .h5p-interactive-book-navigation {
-  background-color: $background-color;
+  background-color: var.$background-color;
   background-size: cover;
-  box-shadow: .625em .625em 1.875em $dark-grey-20;
+  box-shadow: .625em .625em 1.875em var.$dark-grey-20;
   max-width: 0;
   min-height: 19em;
   overflow: hidden;
@@ -37,7 +39,7 @@
 }
 
 .h5p-interactive-book-navigation-sectionlist {
-  background-color: $background-color;
+  background-color: var.$background-color;
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -48,13 +50,13 @@
   }
 
   >:last-child {
-    border-bottom: solid 1px $ghost-white;
+    border-bottom: solid 1px var.$ghost-white;
     padding-bottom: .5em;
   }
 
   .h5p-interactive-book-navigation-section {
     background: transparent;
-    color: $mud;
+    color: var.$mud;
     font-size: .875em;
     font-weight: 400;
     line-height: 1.8;
@@ -71,7 +73,7 @@
 
     .h5p-interactive-book-navigation-section-icon {
       position: absolute;
-      color: $black;
+      color: var.$black;
       font-size: 5px;
       visibility: hidden;
       width: 2.17em;
@@ -94,17 +96,17 @@
   }
 
   :hover {
-    color: var(--color-base, $base-color);
+    color: var(--color-base, var.$base-color);
     cursor: pointer;
   }
 }
 
 .h5p-interactive-book-navigation-closed {
   .h5p-interactive-book-navigation-chapter-button {
-    background-color: var(--color-base-10, $background-color);
+    background-color: var(--color-base-10, var.$background-color);
 
     .h5p-interactive-book-navigation-chapter-title-text {
-      color: $mud;
+      color: var.$mud;
     }
   }
 
@@ -122,34 +124,34 @@
 
 .h5p-interactive-book-navigation-chapter-button {
   align-items: center;
-  background-color: var(--color-base-10, $base-color-10);
+  background-color: var(--color-base-10, var.$base-color-10);
   background-size: cover;
   border: 0;
-  border-bottom: solid 1px $ghost-white;
-  color: $mud;
+  border-bottom: solid 1px var.$ghost-white;
+  color: var.$mud;
   display: flex;
   font-family: Arial;
   height: 3.438em;
   margin: 0;
   padding: 0 1.125em;
   text-align: initial;
-  text-decoration: none solid $mud;
+  text-decoration: none solid var.$mud;
   width: 100%;
   position: relative;
 
   &.h5p-interactive-book-navigation-current {
-    background-color: var(--color-base-10, $base-color-10);
+    background-color: var(--color-base-10, var.$base-color-10);
     border-bottom-color: white;
   }
 
   &:hover {
-    background-color: var(--color-base-5, $base-color-5);
+    background-color: var(--color-base-5, var.$base-color-5);
     cursor: pointer;
   }
 
   .h5p-interactive-book-navigation-chapter-title-text {
     background-color: transparent;
-    color: var(--color-base, $base-color);
+    color: var(--color-base, var.$base-color);
     font-family: Arial;
     font-size: 1em;
     font-weight: 700;
@@ -157,7 +159,7 @@
     padding-left: 1.5em;
     padding-right: 2em;
     overflow: hidden;
-    text-decoration: none solid var(--color-base, $base-color);
+    text-decoration: none solid var(--color-base, var.$base-color);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -185,23 +187,23 @@
   }
 
   &:active {
-    background-color: var(--color-base-10, $base-color-10);
+    background-color: var(--color-base-10, var.$base-color-10);
   }
 }
 
 .h5p-interactive-book-navigation-maintitle {
-  background-color: var(--color-base, $base-color);
+  background-color: var(--color-base, var.$base-color);
   background-size: cover;
 
   .navigation-title {
     align-self: center;
-    color: var(--color-text, $background-color);
+    color: var(--color-text, var.$background-color);
     font-family: Arial;
     font-size: 1em;
     font-weight: 400;
     overflow: hidden;
     padding-left: 1.25em;
-    text-decoration: none solid var(--color-text, $background-color);
+    text-decoration: none solid var(--color-text, var.$background-color);
     text-overflow: ellipsis;
   }
 }

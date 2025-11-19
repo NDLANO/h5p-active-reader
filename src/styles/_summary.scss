@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .h5p-interactive-book {
   &.h5p-interactive-book-small {
     .h5p-interactive-box-summary-progress {
@@ -145,7 +147,7 @@
 
     .h5p-interactive-book-summary-progress-container {
       align-items: center;
-      background-color: transparentize(#dbdbdb, 0.7);
+      background-color: color.adjust(#dbdbdb, $alpha: -0.7);
       border-radius: 5px;
       box-sizing: border-box;
       display: flex;

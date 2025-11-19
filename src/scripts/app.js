@@ -1,10 +1,10 @@
-import URLTools from './urltools';
-import SideBar from './sidebar';
-import StatusBar from './statusbar';
-import Cover from './cover';
-import PageContent from './pagecontent';
 import 'element-scroll-polyfill';
-import Colors from './colors';
+import URLTools from './urltools.js';
+import SideBar from './sidebar.js';
+import StatusBar from './statusbar.js';
+import Cover from './cover.js';
+import PageContent from './pagecontent.js';
+import Colors from './colors.js';
 
 export default class ActiveReader extends H5P.EventDispatcher {
   /**
@@ -57,7 +57,8 @@ export default class ActiveReader extends H5P.EventDispatcher {
     if (contentData.isScoringEnabled !== undefined || contentData.isReportingEnabled !== undefined) {
       this.isSubmitButtonEnabled = (contentData.isScoringEnabled || contentData.isReportingEnabled);
     }
-    else if (H5PIntegration.reportingIsEnabled !== undefined) { // (Never use H5PIntegration directly in a content type. It's only here for backwards compatibility)
+    // (Never use H5PIntegration directly in a content type. It's only here for backwards compatibility)
+    else if (H5PIntegration.reportingIsEnabled !== undefined) {
       this.isSubmitButtonEnabled = H5PIntegration.reportingIsEnabled;
     }
 
@@ -281,14 +282,22 @@ export default class ActiveReader extends H5P.EventDispatcher {
      * @param {object[]} chapters Chapters.
      * @returns {boolean} True, if should have summary.
      */
-    this.hasSummary = (chapters = this.chapters ) => this.hasChaptersTasks(chapters) && this.params.behaviour.displaySummary && this.params.behaviour.displaySummary === true;
+    this.hasSummary = (chapters = this.chapters ) => {
+      return this.hasChaptersTasks(chapters) &&
+        this.params.behaviour.displaySummary &&
+        this.params.behaviour.displaySummary === true;
+    };
 
     /**
      * Check if chapters has tasks
      * @param {object[]} chapters Chapters.
      * @returns {boolean} True, if has tasks.
      */
-    this.hasChaptersTasks = (chapters) => chapters.filter((chapter) => chapter.sections.filter((section) => section.isTask === true).length > 0).length > 0;
+    this.hasChaptersTasks = (chapters) => {
+      return chapters.filter(
+        (chapter) => chapter.sections.filter((section) => section.isTask === true).length > 0
+      ).length > 0;
+    };
 
     /**
      * Check if there are valid chapters.
@@ -301,7 +310,9 @@ export default class ActiveReader extends H5P.EventDispatcher {
      * @param {boolean} getActualChapter If true, get actual chapter.
      * @returns {number} Number of active chapter.
      */
-    this.getActiveChapter = (getActualChapter = false) => !getActualChapter ? this.activeChapter : this.chapters[this.activeChapter];
+    this.getActiveChapter = (getActualChapter = false) => {
+      return !getActualChapter ? this.activeChapter : this.chapters[this.activeChapter];
+    };
 
     /**
      * Set number of active chapter.
@@ -401,7 +412,10 @@ export default class ActiveReader extends H5P.EventDispatcher {
         }
 
         // Resize if necessary and not animating
-        if (this.pageContent.content.style.height !== `${currentNode.offsetHeight}px` && !currentNode.classList.contains('h5p-interactive-book-animate')) {
+        if (
+          this.pageContent.content.style.height !== `${currentNode.offsetHeight}px` &&
+          !currentNode.classList.contains('h5p-interactive-book-animate')
+        ) {
           this.pageContent.content.style.height = `${currentNode.offsetHeight}px`;
 
           this.pageContent.updateFooter();
@@ -425,7 +439,12 @@ export default class ActiveReader extends H5P.EventDispatcher {
       this.pageContent.toggleNavigationMenu();
 
       // Update the menu button
-      this.statusBarHeader.menuToggleButton.setAttribute('aria-expanded', this.statusBarHeader.menuToggleButton.classList.toggle('h5p-interactive-book-status-menu-active') ? 'true' : 'false');
+      const isMenuActive = this.statusBarHeader.menuToggleButton.classList
+        .toggle('h5p-interactive-book-status-menu-active');
+      this.statusBarHeader.menuToggleButton.setAttribute(
+        'aria-expanded',
+        isMenuActive ? 'true' : 'false'
+      );
 
       // Set focus on first element in menu
       if (this.pageContent.sidebarIsOpen && focusNav) {
@@ -495,7 +514,11 @@ export default class ActiveReader extends H5P.EventDispatcher {
      * Check if the current chapter is read.
      * @returns {boolean} True, if current chapter was read.
      */
-    this.isCurrentChapterRead = () => this.isChapterRead(this.chapters[this.activeChapter], this.params.behaviour.progressAuto);
+    this.isCurrentChapterRead = () =>
+      this.isChapterRead(
+        this.chapters[this.activeChapter],
+        this.params.behaviour.progressAuto
+      );
 
     /**
      * Checks if a chapter is read
@@ -524,7 +547,21 @@ export default class ActiveReader extends H5P.EventDispatcher {
      */
     this.setChapterRead = (chapterId = this.activeChapter, read = true) => {
       this.handleChapterCompletion(chapterId, read);
-      this.sideBar.updateChapterProgressIndicator(chapterId, read ? 'DONE' : this.hasChapterStartedTasks(this.chapters[chapterId]) ? 'STARTED' : 'BLANK');
+
+      const getChapterStatusFromState = (read, chapter) => {
+        if (read) {
+          return 'DONE';
+        }
+
+        if (this.hasChapterStartedTasks(chapter)) {
+          return 'STARTED';
+        }
+
+        return 'BLANK';
+      };
+
+      const chapterStatus = getChapterStatusFromState(read, this.chapters[chapterId]);
+      this.sideBar.updateChapterProgressIndicator(chapterId, chapterStatus);
     };
 
     /**
@@ -624,7 +661,12 @@ export default class ActiveReader extends H5P.EventDispatcher {
       }
 
       // All chapters completed
-      if (!this.completed && this.chapters.filter((chapter) => !chapter.isSummary).every((chapter) => chapter.completed)) {
+      if (
+        !this.completed &&
+        this.chapters
+          .filter((chapter) => !chapter.isSummary)
+          .every((chapter) => chapter.completed)
+      ) {
         this.completed = true;
         this.trigger('bookCompleted', { completed: this.completed });
       }
@@ -1002,8 +1044,10 @@ export default class ActiveReader extends H5P.EventDispatcher {
 
     config.behaviour.displaySummary = config.behaviour.displaySummary === undefined || config.behaviour.displaySummary;
     config.behaviour.showTotalScore = config.behaviour.displaySummary && (config.behaviour.showTotalScore ?? true);
-    config.behaviour.showArticleProgress = config.behaviour.displaySummary && (config.behaviour.showArticleProgress ?? true);
-    config.behaviour.showInteractionProgress = config.behaviour.displaySummary && (config.behaviour.showInteractionProgress ?? true);
+    config.behaviour.showArticleProgress =
+      config.behaviour.displaySummary && (config.behaviour.showArticleProgress ?? true);
+    config.behaviour.showInteractionProgress =
+      config.behaviour.displaySummary && (config.behaviour.showInteractionProgress ?? true);
 
     config.l10n = {
       read,

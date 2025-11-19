@@ -264,7 +264,9 @@ class SideBar extends H5P.EventDispatcher {
    * @param {boolean} collapse If true, will collapse chapter.
    */
   toggleChapter(chapterNode, collapse) {
-    collapse = (collapse !== undefined) ? collapse : !(chapterNode.classList.contains('h5p-interactive-book-navigation-closed'));
+    collapse = (collapse !== undefined) ?
+      collapse :
+      !(chapterNode.classList.contains('h5p-interactive-book-navigation-closed'));
 
     const childNav = chapterNode.querySelector('.h5p-interactive-book-navigation-sectionlist');
     const arrow = chapterNode.getElementsByClassName('h5p-interactive-book-navigation-chapter-accordion')[0];
@@ -310,7 +312,8 @@ class SideBar extends H5P.EventDispatcher {
 
     // Focus new chapter button if active chapter was closed
     if (chapterId !== this.focusedChapter) {
-      const chapterButton = this.chapterNodes[chapterId].querySelector('.h5p-interactive-book-navigation-chapter-button');
+      const chapterButton =
+        this.chapterNodes[chapterId].querySelector('.h5p-interactive-book-navigation-chapter-button');
       this.setFocusToItem(chapterButton, chapterId, true);
     }
   }
@@ -376,8 +379,9 @@ class SideBar extends H5P.EventDispatcher {
    * @param {number} sectionId Section Id.
    */
   setSectionMarker(chapterId, sectionId) {
-    const icon = this.chapterNodes[chapterId]
-      .querySelector('.h5p-interactive-book-navigation-section-' + sectionId + ' .h5p-interactive-book-navigation-section-icon');
+    const icon = this.chapterNodes[chapterId].querySelector(
+      '.h5p-interactive-book-navigation-section-' + sectionId + ' .h5p-interactive-book-navigation-section-icon'
+    );
 
     if (icon) {
       icon.classList.remove('icon-chapter-blank');
@@ -467,7 +471,9 @@ class SideBar extends H5P.EventDispatcher {
 
     // Collapse all but current chapters in menu and highlight current
     if (this.parent.activeChapter === chapterId) {
-      chapterNode.querySelector('.h5p-interactive-book-navigation-chapter-button').classList.add('h5p-interactive-book-navigation-current');
+      chapterNode.querySelector(
+        '.h5p-interactive-book-navigation-chapter-button').classList.add('h5p-interactive-book-navigation-current'
+      );
     }
     else {
       this.toggleChapter(chapterNode, true);

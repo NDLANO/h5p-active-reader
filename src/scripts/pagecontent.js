@@ -1,5 +1,5 @@
-import URLTools from './urltools';
-import Summary from './summary';
+import URLTools from './urltools.js';
+import Summary from './summary.js';
 
 class PageContent extends H5P.EventDispatcher {
   /**

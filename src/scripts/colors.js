@@ -140,7 +140,10 @@ export default class Colors {
 Colors.DEFAULT_COLOR_BASE = Color('#1768c4');
 Colors.DEFAULT_COLOR_BG = Color('#ffffff');
 
-/** @constant {number} Minimum acceptable contrast for normal font size, cmp. https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-procedure */
+/**
+ * @constant {number} Minimum Mimimum acceptable contrast for normal font size.
+ * cmp. https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-procedure
+ */
 Colors.MINIMUM_ACCEPTABLE_CONTRAST = 4.5;
 
 // Relevant default colors defined in SCSS main class or derived from those

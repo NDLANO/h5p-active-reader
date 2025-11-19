@@ -1,5 +1,5 @@
 import 'jquery-circle-progress';
-import Colors from './colors';
+import Colors from './colors.js';
 
 class Summary extends H5P.EventDispatcher {
 
@@ -97,10 +97,13 @@ class Summary extends H5P.EventDispatcher {
     emptyContainer.style.display = 'none';
     if (filter === this.filterActionUnanswered) {
       overviewList.classList.add('h5p-interactive-book-summary-overview-list-only-unanswered');
-      const filteredSectionList = sectionList.filter((section) => !section.classList.contains('h5p-interactive-book-summary-no-interactions'));
+      const filteredSectionList = sectionList
+        .filter((section) => !section.classList.contains('h5p-interactive-book-summary-no-interactions'));
       if (filteredSectionList.length) {
         filteredSectionList[0].classList.add('h5p-interactive-book-summary-top-section');
-        filteredSectionList[filteredSectionList.length - 1].classList.add('h5p-interactive-book-summary-bottom-section');
+        filteredSectionList[filteredSectionList.length - 1].classList.add(
+          'h5p-interactive-book-summary-bottom-section'
+        );
       }
       else {
         emptyContainer.style.display = 'block';
@@ -181,7 +184,15 @@ class Summary extends H5P.EventDispatcher {
    * @param {number} [smallProgressTotal] Total progress for small text if it differs from the total progress counter
    * @returns {HTMLDivElement} Progress element.
    */
-  createProgress(title, smallText, progressCounter, progressTotal, isAbsoluteValues = false, smallProgress, smallProgressTotal) {
+  createProgress(
+    title,
+    smallText,
+    progressCounter,
+    progressTotal,
+    isAbsoluteValues = false,
+    smallProgress,
+    smallProgressTotal
+  ) {
     const box = document.createElement('div');
 
     const header = document.createElement('h3');
@@ -271,7 +282,12 @@ class Summary extends H5P.EventDispatcher {
    * @returns {HTMLDivElement} Progress box.
    */
   addBookProgress() {
-    const box = this.createProgress(this.l10n.bookProgress, this.l10n.bookProgressSubtext, this.chapters.filter((chapter) => chapter.completed).length, this.chapters.length);
+    const box = this.createProgress(
+      this.l10n.bookProgress,
+      this.l10n.bookProgressSubtext,
+      this.chapters.filter((chapter) => chapter.completed).length,
+      this.chapters.length,
+    );
     box.classList.add('h5p-interactive-book-summary-progress-container');
     box.classList.add('h5p-interactive-book-summary-book-progress');
 
@@ -292,7 +308,12 @@ class Summary extends H5P.EventDispatcher {
       totalInteractions += chapter.maxTasks;
       uncompletedInteractions += chapter.tasksLeft;
     }
-    const box = this.createProgress(this.l10n.interactionsProgress, this.l10n.interactionsProgressSubtext, Math.max(totalInteractions - uncompletedInteractions, 0), totalInteractions);
+    const box = this.createProgress(
+      this.l10n.interactionsProgress,
+      this.l10n.interactionsProgressSubtext,
+      Math.max(totalInteractions - uncompletedInteractions, 0),
+      totalInteractions,
+    );
     box.classList.add('h5p-interactive-book-summary-progress-container');
     box.classList.add('h5p-interactive-book-summary-interactions-progress');
 
@@ -484,7 +505,10 @@ class Summary extends H5P.EventDispatcher {
       score.classList.add('h5p-interactive-book-summary-section-score');
       score.innerHTML = '-';
       if ( typeof section.instance.getScore === 'function') {
-        score.innerHTML = this.l10n.scoreText.replace('@score', section.instance.getScore()).replace('@maxscore', section.instance.getMaxScore());
+        score.innerHTML = this.l10n.scoreText.replace(
+          '@score',
+          section.instance.getScore()).replace('@maxscore', section.instance.getMaxScore(),
+        );
       }
 
       if ( section.taskDone) {
@@ -569,7 +593,10 @@ class Summary extends H5P.EventDispatcher {
     const sectionSubheader = document.createElement('div');
     sectionSubheader.classList.add('h5p-interactive-book-summary-chapter-subheader');
     if ( chapter.maxTasks ) {
-      sectionSubheader.innerHTML = this.l10n.leftOutOfTotalCompleted.replace('@left', Math.max(chapter.maxTasks - chapter.tasksLeft, 0)).replace('@max', chapter.maxTasks);
+      sectionSubheader.innerHTML = this.l10n.leftOutOfTotalCompleted.replace(
+        '@left',
+        Math.max(chapter.maxTasks - chapter.tasksLeft, 0)).replace('@max', chapter.maxTasks,
+      );
     }
     else {
       sectionSubheader.innerHTML = this.l10n.noInteractions;
@@ -780,8 +807,9 @@ class Summary extends H5P.EventDispatcher {
     ) {
       // Only initilize if it's actually going to be shown
       if (
-        this.parent.pageContent && this.parent.chapters[this.parent.getChapterId(this.parent.pageContent.targetPage.chapter)].isSummary ||
-        this.parent.chapters.length === 0
+        this.parent.pageContent &&
+          this.parent.chapters[this.parent.getChapterId(this.parent.pageContent.targetPage.chapter)].isSummary ||
+          this.parent.chapters.length === 0
       ) {
         // Initialize all the things!
         if (this.parent.chapters.length > 0) {
@@ -800,7 +828,9 @@ class Summary extends H5P.EventDispatcher {
       this.noChapterInteractions();
     }
 
-    Array.from(document.querySelectorAll('.h5p-interactive-book-summary-footer')).forEach((element) => element.remove());
+    Array.from(document.querySelectorAll(
+      '.h5p-interactive-book-summary-footer')).forEach((element) => element.remove()
+    );
 
     container.append(this.wrapper);
 
@@ -837,11 +867,16 @@ class Summary extends H5P.EventDispatcher {
           currentTaskDone[internalIndex].taskDone) {
           this.parent.isAnswerUpdated = true;
         }
-        // Compare object type data
-        if (typeof (previousStateInstance[internalIndex]) === 'object' &&
+
+        const currentJSON = JSON.stringify(currentStateInstance[internalIndex]);
+        const previousJSON = JSON.stringify(previousStateInstance[internalIndex]);
+
+        if (
+          typeof (previousStateInstance[internalIndex]) === 'object' &&
           !Array.isArray(previousStateInstance[internalIndex]) &&
-          JSON.stringify(previousStateInstance[internalIndex]) !== JSON.stringify(currentStateInstance[internalIndex]) &&
-          currentTaskDone[internalIndex].taskDone) {
+          previousJSON !== currentJSON &&
+          currentTaskDone[internalIndex].taskDone
+        ) {
           this.parent.isAnswerUpdated = true;
         }
       }
