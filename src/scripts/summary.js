@@ -621,7 +621,7 @@ class Summary extends H5P.EventDispatcher {
     button.classList.add('h5p-interactive-book-summary-toggle-all-details-button');
     button.type = 'button';
     button.textContent = this.l10n.showDetails;
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', () => {
       const sectionTitles = this.wrapper.querySelectorAll(
         '.h5p-interactive-book-summary-section-title.toggle'
       );

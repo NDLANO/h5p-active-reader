@@ -3,5 +3,4 @@ import '../styles/style.scss';
 import ActiveReader from '../scripts/app.js';
 
 // Load library
-H5P = H5P || {};
 H5P.ActiveReader = ActiveReader;
