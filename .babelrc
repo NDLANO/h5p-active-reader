@@ -1,19 +1,10 @@
 {
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "useBuiltIns": "usage",
-        "corejs": 3,
-        "targets": {
-          "browsers": "last 2 versions",
-          "ie": "11"
-        }
-      }
-    ]
-  ],
-  "plugins": [
-    "@babel/plugin-transform-object-assign",
-    "@babel/plugin-transform-typeof-symbol"
-  ]
+  "presets": ["@babel/preset-env"],
+  "plugins": ["@babel/plugin-transform-classes"],
+  "assumptions": {
+    "setClassMethods": true,
+    "constantSuper": true,
+    "superIsCallableConstructor": true,
+    "noClassCalls": true
+  }
 }
