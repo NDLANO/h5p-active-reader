@@ -17,18 +17,18 @@
   "author": "Joubel",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
+    "@babel/core": "^8.0.5",
+    "@babel/preset-env": "^8.0.5",
     "babel-loader": "^10.1.1",
     "core-js": "3.50.0",
     "css-loader": "^7.1.5",
     "eslint-config-ndla-h5p": "github:ndlano/eslint-config-ndla-h5p",
-    "eslint-plugin-jsdoc": "^64.3.9",
+    "eslint-plugin-jsdoc": "^64.4.0",
     "mini-css-extract-plugin": "^2.10.2",
-    "sass": "^1.104.0",
+    "sass": "^1.104.1",
     "sass-loader": "^17.0.1",
     "terser-webpack-plugin": "^5.6.1",
-    "webpack": "^5.110.3",
+    "webpack": "^5.111.0",
     "webpack-cli": "^7.2.3"
   },
   "dependencies": {
